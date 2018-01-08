@@ -9,7 +9,7 @@
 
 //initialisierungsliste
 GEOKO::GEOKO() 
-        : BrGr(NULL),LaGr(NULL),BrMin(NULL),LaMin(NULL),BrSec(NULL),LaSec(NULL),DVKE() //geht das DVKE()?
+        : BrGr(NULL),LaGr(NULL),BrMin(NULL),LaMin(NULL),BrSec(NULL),LaSec(NULL),DVKE() 
 {
     
 }

@@ -9,11 +9,11 @@
 
 
 // BIS JETZT NICHT GEFORDERT
-DVKE::DVKE(DVKE* V, DVKE* N) 
-    : V(V), N(N)            // V=V und N=N
-{
-    
-}
+//DVKE::DVKE(DVKE* V, DVKE* N) 
+//  : V(V), N(N)            // V=V und N=N
+//{
+//    
+//}
 
 
 // initailiserrungsliste
