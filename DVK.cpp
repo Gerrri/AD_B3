@@ -101,6 +101,17 @@ string DVK::Menu(){
 
 DVK::readData(string choice){
     
+    
+    //TEMOPRÄRE vARIABLEN
+    double B_S, L_S; // L und B (Sek)
+    int B_M, L_M;    // L und B (Min)
+    int B_G, L_G;    // L und B (Grad)
+    double B,L;      // L und B aus Tabelle   
+    
+    double nk_L_Grad, nk_B_Grad; // Nackomma länge und Breite GRAD
+    double nk_L_Min, nk_B_Min; // Nackomma länge und Breite GRAD
+    
+    
     ifstream f;
     f.open(choice, ios::in);
     string input;
@@ -109,13 +120,55 @@ DVK::readData(string choice){
     while (!f.eof())
     {
         getline(f, input);
-        char* char_array = strtok(input, ",");
-        while(char_array!=NULL){
-            *index[1]->SetBrGr()
-            char_array = strtok(input, ",");
-        }
+       
+        //Sekunden einfügen/einelesen
+        char* char_array = strtok(input, ","); //Sprung auf ersten eintrag
+        B = (double)input; // Umwandeln des Wertes in einen Double
         
-        zaehler_zeile++; // nächste zeile
+        char_array = strtok(input, ","); //Sprung auf zweiten eintrag
+        L = (double)input; 
+     
+        // Grad = L bzw B / 3600 (nachkomma auslagern) --- L_B = L \ 3600
+        // Minuten = (nachkomma von GRAD) *60 (nachkomma auslagern)
+        // Sekunden = (nachkomma von Minuten)
+        
+        //Berechnen des Grads (ohne Nackommastellen)
+        B_G = (int) (B / 3600 + 0.5f);
+        L_G = (int) (L / 3600 + 0.5f);
+        //Nachkommastellen auslesen
+        nk_B_Grad = B / 3600 - (int) (B\3600) ;
+        nk_L_Grad = L / 3600 - (int) (L\3600) ;
+        
+        
+        //Berechnen der Minuten (ohne Nackommastellen)
+        B_M = (int) (nk_B_Grad*60+0.5f);
+        L_M = (int) (nk_L_Grad*60+0.5f);
+        //Nackommastellen auslesen
+        nk_B_Min = nk_B_Grad * 60 -(int) (nk_B_Grad*60);
+        nk_L_Min = nk_L_Grad * 60 -(int) (nk_L_Grad*60);
+        
+        
+        //Berechne rest Sekunden
+        B_S = nk_B_Min * 60;
+        L_S = nk_L_Min * 60;       
+        
+                
+                
+                
+        //zuweisung Grad
+        *index[zaehler_zeile]->SetBrGr(B_G);
+        *index[zaehler_zeile]->SetLaGr(L_G); 
+        //zuweisung Minuten
+        *index[zaehler_zeile]->SetBrMin(B_M);
+        *index[zaehler_zeile]->SetLaMin(L_M); 
+        //zuweisung Sekunden
+        *index[zaehler_zeile]->SetBrSec(B_S);    
+        *index[zaehler_zeile]->SetLaSec(L_S);    
+            
+ 
+        
+        // nächste zeile
+        zaehler_zeile++; 
     }
     
     f.close();    
