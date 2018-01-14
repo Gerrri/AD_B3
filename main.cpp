@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <conio.h>
+//#include <conio.h>
 #include <string.h>
 #include "windows.h"
 #include <iostream>
@@ -12,20 +12,21 @@ int main(){
 DVK * pDVK = NULL;
 
 //...Menue ...
-?
+
 // ...Auswahl ...
 
-Darin:
+
 
 //----------------------------------------------------------------------
 //
-//    Zeitmessung im �s-Bereich
+//    Zeitmessung im ms-Bereich
 //    TESTANWENDUNG
 //    Author: tbird
 //    Date: 20.11.2007
 //
 //----------------------------------------------------------------------
 	//Variablen
+   
     LONGLONG g_Frequency, g_FirstNullCount, g_LastNullCount, g_FirstCount, g_LastCount;
 
     //Frequenz holen
@@ -50,7 +51,7 @@ Darin:
 
 
 // Hier ist der Aufruf fuer Ihr Sortierverfahren, Beispiel: Heap
-   pDVK->HeapSort();
+//   pDVK->HeapSort();
 
 
 
@@ -62,6 +63,9 @@ Darin:
 //Von der gemessenen Zeit die "Null-Zeit" abziehen, um genauer zu werden
 	double time = (dTimeDiff - nulltime) * 1000000; //mikro-sekunden
 	printf("Zeit: %4.5f us\n" ,time);
-? und zurueck ins Menue?;
+
+        
+//        Zurück ins Menü
 }
+
 
