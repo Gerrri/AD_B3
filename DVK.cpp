@@ -27,6 +27,31 @@ DVK::DVK(long Anzahl){
         
         for(int i=0; i<Anzahl; i++){
            *index[i] = new *GEOKO();
+           
+           // Zuweisung der Nachfolger bzw Vorgägner
+           if(i > 0 ){
+               //vorgänger = index - 1
+              *index[i]->SetV(*index[i-1]);
+              
+              //(bei vorherigen)nächstes = index (aktuelles)
+              *index[i-1]->SetN(*index[i]);
+              
+              // Beim letzten Element nächster = NULL
+              if(i == Anzahl){*index[i]->SetN(NULL);}
+              
+           }
+           else{
+               // Beim ersten Element vorgänger = NULL
+               *index[i]->SetV(NULL);
+              
+           }
+           
+           
+           
+          
+           
+           
+           
         }
         
         // Anker bestücken:
