@@ -24,7 +24,6 @@ private:
     GEOKO *middle;
     
     // für initialisierung
-    GEOKO obj[];
     GEOKO *index[];
         
     void init();

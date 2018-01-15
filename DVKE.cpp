@@ -18,7 +18,7 @@
 
 // initailiserrungsliste
 DVKE::DVKE() 
-    : V(NULL), N(NULL) // initalisierung V und N
+   : V(NULL), N(NULL) // initalisierung V und N
 {
     
 }

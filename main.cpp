@@ -10,7 +10,7 @@
 using namespace std;
 
 int main() {
-    DVK * pDVK = NULL;
+    DVK *pDVK = NULL;
 
     //...Menue ...
 
@@ -27,7 +27,7 @@ int main() {
         // ...Auswahl ...
         switch (choice) {
             case 1:
-
+                *pDVK = new DVK(500);
 
                 break;
             case 2:

@@ -43,6 +43,11 @@
       <compileType>
       </compileType>
       <item path="DVK.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incFile>
+            <pElem>DVK.h</pElem>
+          </incFile>
+        </ccTool>
       </item>
       <item path="DVK.h" ex="false" tool="3" flavor2="0">
       </item>

@@ -22,8 +22,9 @@ using namespace std;
 DVK::DVK(long Anzahl){
     // Abfrage ob Anzahl in ordnung
     if(Anzahl <= 1000000){
+        anz = Anzahl;
         
-        *index[] = new *index[Anzahl]();
+        *index[] = new GEOKO *index[Anzahl]();
         
         for(int i=0; i<Anzahl; i++){
            *index[i] = new *GEOKO();
@@ -37,20 +38,15 @@ DVK::DVK(long Anzahl){
               *index[i-1]->SetN(*index[i]);
               
               // Beim letzten Element nächster = NULL
-              if(i == Anzahl){*index[i]->SetN(NULL);}
+              if(i == Anzahl){*index[i]->SetN(0);}
               
            }
            else{
                // Beim ersten Element vorgänger = NULL
-               *index[i]->SetV(NULL);
+               *index[i]->SetV(0);
               
            }
-           
-           
-           
-          
-           
-           
+
            
         }
         
@@ -59,10 +55,8 @@ DVK::DVK(long Anzahl){
         *N_Anker = *index[Anzahl];
     
         //Auswahl der Datei [Dateiname -> choice]
-        string choice = Menu();
-    
         //Auslesen der Datei
-        readData();
+        readData(Menu());
         
         // zur erstellung der Index Liste
         //init();
@@ -138,7 +132,9 @@ DVK::readData(string choice){
     double B,L;      // L und B aus Tabelle   
     
     double nk_L_Grad, nk_B_Grad; // Nackomma länge und Breite GRAD
-    double nk_L_Min, nk_B_Min; // Nackomma länge und Breite GRAD
+    double nk_L_Min, nk_B_Min; // Nackomma länge und Breite MIN
+    
+    
     
     
     ifstream f;
@@ -164,6 +160,7 @@ DVK::readData(string choice){
         //Berechnen des Grads (ohne Nackommastellen)
         B_G = (int) (B / 3600 + 0.5f);
         L_G = (int) (L / 3600 + 0.5f);
+        
         //Nachkommastellen auslesen
         nk_B_Grad = B / 3600 - (int) (B\3600) ;
         nk_L_Grad = L / 3600 - (int) (L\3600) ;

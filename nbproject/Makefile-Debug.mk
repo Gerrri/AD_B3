@@ -68,7 +68,7 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ad_b3.exe: ${OBJECTFILES}
 ${OBJECTDIR}/DVK.o: DVK.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/DVK.o DVK.cpp
+	$(COMPILE.cc) -g -include DVK.h -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/DVK.o DVK.cpp
 
 ${OBJECTDIR}/DVKE.o: DVKE.cpp
 	${MKDIR} -p ${OBJECTDIR}
