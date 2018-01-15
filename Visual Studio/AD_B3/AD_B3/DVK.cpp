@@ -21,18 +21,18 @@ DVK::DVK(long Anzahl) {
 			// Zuweisung der Nachfolger bzw Vorgägner
 			if (i > 0) {
 				//vorgänger = index - 1
-				*index[i]->SetV(*index[i - 1]);
+				index[i]->SetV(index[i - 1]);
 
 				//(bei vorherigen)nächstes = index (aktuelles)
-				*index[i - 1]->SetN(*index[i]);
+				index[i - 1]->SetN(index[i]);
 
 				// Beim letzten Element nächster = NULL
-				if (i == Anzahl) { *index[i]->SetN(0); }
+				if (i == Anzahl) {index[i]->SetN(0); }
 
 			}
 			else {
 				// Beim ersten Element vorgänger = NULL
-				*index[i]->SetV(0);
+				index[i]->SetV(0);
 
 			}
 
@@ -106,7 +106,7 @@ void DVK::readData(string choice) {
 
 	ifstream f;
 	f.open(choice, ios::in);
-	string input;
+	char* input;
 
 	int zaehler_zeile = 0;
 	while (!f.eof())
@@ -116,10 +116,11 @@ void DVK::readData(string choice) {
 
 		//Sekunden einfügen/einelesen
 		char* char_array = strtok(input, ","); //Sprung auf ersten eintrag
-		B = (double)input; // Umwandeln des Wertes in einen Double
+		string a = char_array;
+		B = Double.parseDouble(a); // Umwandeln des Wertes in einen Double
 
 		char_array = strtok(input, ","); //Sprung auf zweiten eintrag
-		L = (double)input;
+		L = input;
 
 		// Grad = L bzw B / 3600 (nachkomma auslagern) --- L_B = L \ 3600
 		// Minuten = (nachkomma von GRAD) *60 (nachkomma auslagern)
@@ -150,14 +151,14 @@ void DVK::readData(string choice) {
 
 
 		//zuweisung Grad
-		*index[zaehler_zeile]->SetBrGr(B_G);
-		*index[zaehler_zeile]->SetLaGr(L_G);
+		index[zaehler_zeile]->SetBrGr(B_G);
+		index[zaehler_zeile]->SetLaGr(L_G);
 		//zuweisung Minuten
-		*index[zaehler_zeile]->SetBrMin(B_M);
-		*index[zaehler_zeile]->SetLaMin(L_M);
+		index[zaehler_zeile]->SetBrMin(B_M);
+		index[zaehler_zeile]->SetLaMin(L_M);
 		//zuweisung Sekunden
-		*index[zaehler_zeile]->SetBrSec(B_S);
-		*index[zaehler_zeile]->SetLaSec(L_S);
+		index[zaehler_zeile]->SetBrSec(B_S);
+		index[zaehler_zeile]->SetLaSec(L_S);
 
 
 
