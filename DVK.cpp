@@ -28,6 +28,10 @@ DVK::DVK(long Anzahl){
         for(int i=0; i<Anzahl; i++){
            *index[i] = new *GEOKO();
         }
+        
+        // Anker bestücken:
+        *V_Anker = *index[0];
+        *N_Anker = *index[Anzahl];
     
         //Auswahl der Datei [Dateiname -> choice]
         string choice = Menu();
