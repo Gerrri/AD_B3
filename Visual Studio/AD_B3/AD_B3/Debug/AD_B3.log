@@ -1,0 +1,17 @@
+﻿  DVK.cpp
+c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(123): error C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(439): note: Siehe Deklaration von "strtok"
+c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(126): error C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(439): note: Siehe Deklaration von "strtok"
+c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(188): error C3867: "DVKE::GetV": Keine Standardsyntax; "&" zum Erstellen eines Verweises auf das Member verwenden
+c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(188): error C2440: "=": "DVKE *(__thiscall DVKE::* )(void) const" kann nicht in "DVKE *" konvertiert werden
+  c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(188): note: Es gibt keinen Kontext, in dem diese Konvertierung möglich ist
+c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(189): error C3867: "DVKE::GetN": Keine Standardsyntax; "&" zum Erstellen eines Verweises auf das Member verwenden
+c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(189): error C2440: "=": "DVKE *(__thiscall DVKE::* )(void) const" kann nicht in "DVKE *" konvertiert werden
+  c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(189): note: Es gibt keinen Kontext, in dem diese Konvertierung möglich ist
+c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(196): error C3867: "DVKE::GetV": Keine Standardsyntax; "&" zum Erstellen eines Verweises auf das Member verwenden
+c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(197): error C3867: "DVKE::GetN": Keine Standardsyntax; "&" zum Erstellen eines Verweises auf das Member verwenden
+c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(206): error C2664: "void DVKE::SetV(DVKE *)" : Konvertierung von Argument 1 von "DVKE **" in "DVKE *" nicht möglich
+  c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(206): note: Die Typen, auf die verwiesen wird, sind nicht verknüpft; die Konvertierung erfordert einen reinterpret_cast-Operator oder eine Typumwandlung im C- oder Funktionsformat.
+c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(207): error C2664: "void DVKE::SetN(DVKE *)" : Konvertierung von Argument 1 von "DVKE **" in "DVKE *" nicht möglich
+  c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(207): note: Die Typen, auf die verwiesen wird, sind nicht verknüpft; die Konvertierung erfordert einen reinterpret_cast-Operator oder eine Typumwandlung im C- oder Funktionsformat.

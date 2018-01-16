@@ -7,19 +7,20 @@ class DVK
 {
 public:
 	//Konstruktor
-	DVK(long Anzahl) {};
+	DVK(long Anzahl) ;
 
 	//Nur Heapsort!
 	void heapDown(long Anzahl, long Knoten);
 	void erzeugeHeap(long Anzahl);
 	void vertausche(long First, long Second);
-	void init();
+
+
 
 private:
 	//Konstruktor
 
-	void HeapSort() {};// in DVK Konstruktor
-	string Menu() {}; // Menü zur abfrage der der Datei
+	void HeapSort() ;// in DVK Konstruktor
+	string Menu() ; // Menü zur abfrage der der Datei
 	void readData(string choice);
 
 	//Varaibalen zu Verankerung / Mitte
@@ -27,15 +28,14 @@ private:
 	GEOKO *N_Anker;
 	GEOKO *middle;
 
-	// für initialisierung
-	GEOKO *index[50];
+	
 
 	int anz = 0;
 
 	
 	
 
-	readData(string choice);
+	
 
 };
 

@@ -14,7 +14,7 @@ public:
 
 
 private:
-	DVKE * V; // Element daVOR
+	DVKE *V; // Element daVOR
 	DVKE *N; // Element daNACH
 };
 

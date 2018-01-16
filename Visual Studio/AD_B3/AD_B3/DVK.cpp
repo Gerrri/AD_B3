@@ -1,8 +1,10 @@
 #include "stdafx.h"
 #include "DVK.h"
 #include <fstream>
+#include <stdio.h>
 
-
+// für initialisierung
+GEOKO *index[1000000];
 
 
 DVK::DVK(long Anzahl) {
@@ -13,10 +15,10 @@ DVK::DVK(long Anzahl) {
 		anz = Anzahl;
 		int const x = Anzahl;
 
-		GEOKO *index[5];
+		for (int i = 0; i<Anzahl; i++){
 
-		for (int i = 0; i<Anzahl; i++) {
-			*index[i] = *(new GEOKO());
+			index[i] = new GEOKO();
+
 
 			// Zuweisung der Nachfolger bzw Vorgägner
 			if (i > 0) {
@@ -66,6 +68,7 @@ DVK::DVK(long Anzahl) {
 
 }
 
+// Ruft Menu zur auswahl einer Datei auf und gibt Datein als Strin "Datei.csv" zurück
 string DVK::Menu() {
 	int choice;
 	do {
@@ -89,6 +92,7 @@ string DVK::Menu() {
 	} while (choice != 1 || choice != 2);
 }
 
+// choice erwartet Dateiname
 void DVK::readData(string choice) {
 
 
@@ -111,16 +115,16 @@ void DVK::readData(string choice) {
 	int zaehler_zeile = 0;
 	while (!f.eof())
 	{
-		getline(f, input);
-	
+		//f.getline(f, input);
+		
+		f.getline(input, 99);
 
 		//Sekunden einfügen/einelesen
 		char* char_array = strtok(input, ","); //Sprung auf ersten eintrag
-		string a = char_array;
-		B = Double.parseDouble(a); // Umwandeln des Wertes in einen Double
+		B = atof(char_array); // Umwandeln des Wertes in einen Double
 
 		char_array = strtok(input, ","); //Sprung auf zweiten eintrag
-		L = input;
+		L = atof(char_array); // Umwandeln des Wertes in einen Double
 
 		// Grad = L bzw B / 3600 (nachkomma auslagern) --- L_B = L \ 3600
 		// Minuten = (nachkomma von GRAD) *60 (nachkomma auslagern)
@@ -166,5 +170,45 @@ void DVK::readData(string choice) {
 		zaehler_zeile++;
 	}
 
+
+	f.clear(); 
 	f.close();
 }
+
+// Aufruf mit : vertausche(index1, index2);
+void DVK::vertausche(long First, long Second) {
+	// First and Second sind index1 und index2 der zu tauschenden Elemente
+	
+	// temporäre Variablen für index[First]
+	DVKE *V_1, *N_1;
+	GEOKO *temp1;
+
+	//zwischenspeichern der index[First Werte]
+	temp1 = index[First];
+	V_1 = index[First]->GetV;
+	N_1 = index[First]->GetN;
+
+
+	// +++++++++ FIRST +++++++++
+		//Zeiger von Objekt (bei Adresse First) -> Second
+
+		// überschreibe First = Second ( V und N)
+		index[First]->SetV(index[Second]->GetV);
+		index[First]->SetN(index[Second]->GetN);
+
+		// überschreibe eigentliche Adresse
+		index[First] = index[Second];
+
+	// +++++++++ SECOND +++++++++
+		//Zeiger von Objekt (bei Adresse Second) -> First
+
+		// überschreibe Second = First[aus zwischenspeicher] (V und N)
+		index[Second]->SetV(V_1);
+		index[Second]->SetN(N_1);
+
+		// überschreibe eigentliche Adresse
+		index[Second] = temp1;
+
+
+	// Fertig Getauscht !
+}		
