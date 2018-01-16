@@ -10,8 +10,8 @@ public:
 	DVK(long Anzahl) ;
 
 	//Nur Heapsort!
-	void heapDown(long Anzahl, long Knoten);
-	void erzeugeHeap(long Anzahl);
+	//void heapDown(long Anzahl, long Knoten);
+	//void erzeugeHeap(long Anzahl);
 	void vertausche(long First, long Second);
 
 
@@ -19,7 +19,7 @@ public:
 private:
 	//Konstruktor
 
-	void HeapSort() ;// in DVK Konstruktor
+	//void HeapSort() ;// in DVK Konstruktor
 	string Menu() ; // Menü zur abfrage der der Datei
 	void readData(string choice);
 

@@ -54,7 +54,7 @@ DVK::DVK(long Anzahl) {
 		// -> verändert und oben bereits passiert
 
 		//sortieren nach MAX-Heap
-		HeapSort();
+		//HeapSort();
 
 	}
 	else {
@@ -90,6 +90,8 @@ string DVK::Menu() {
 		}
 
 	} while (choice != 1 || choice != 2);
+
+	return 0;
 }
 
 // choice erwartet Dateiname
@@ -110,7 +112,7 @@ void DVK::readData(string choice) {
 
 	ifstream f;
 	f.open(choice, ios::in);
-	char* input;
+	char* input = 0;
 
 	int zaehler_zeile = 0;
 	while (!f.eof())
@@ -120,9 +122,11 @@ void DVK::readData(string choice) {
 		f.getline(input, 99);
 
 		//Sekunden einfügen/einelesen
+		#pragma warning(suppress : 4996)	
 		char* char_array = strtok(input, ","); //Sprung auf ersten eintrag
 		B = atof(char_array); // Umwandeln des Wertes in einen Double
 
+		#pragma warning(suppress : 4996)		
 		char_array = strtok(input, ","); //Sprung auf zweiten eintrag
 		L = atof(char_array); // Umwandeln des Wertes in einen Double
 
@@ -180,21 +184,22 @@ void DVK::vertausche(long First, long Second) {
 	// First and Second sind index1 und index2 der zu tauschenden Elemente
 	
 	// temporäre Variablen für index[First]
-	DVKE *V_1, *N_1;
+	DVKE *V_1 = new DVKE();
+	DVKE *N_1 = new DVKE();
 	GEOKO *temp1;
 
 	//zwischenspeichern der index[First Werte]
 	temp1 = index[First];
-	V_1 = index[First]->GetV;
-	N_1 = index[First]->GetN;
+	V_1->SetV(index[First]->GetV());
+	N_1->SetN(index[First]->GetN());
 
 
 	// +++++++++ FIRST +++++++++
 		//Zeiger von Objekt (bei Adresse First) -> Second
 
 		// überschreibe First = Second ( V und N)
-		index[First]->SetV(index[Second]->GetV);
-		index[First]->SetN(index[Second]->GetN);
+		index[First]->SetV(index[Second]->GetV());
+		index[First]->SetN(index[Second]->GetN());
 
 		// überschreibe eigentliche Adresse
 		index[First] = index[Second];
