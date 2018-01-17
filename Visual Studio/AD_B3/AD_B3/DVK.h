@@ -13,12 +13,8 @@ public:
 	//void heapDown(long Anzahl, long Knoten);
 	//void erzeugeHeap(long Anzahl);
 	void vertausche(long First, long Second);
-	void vergleich(GEOKO G1, GEOKO G2) {
-
-	}
-	
-
-
+	bool groesser(GEOKO G1, GEOKO G2, GEOKO mid);
+	GEOKO abstand_mitte(GEOKO G, GEOKO mid);
 
 
 private:

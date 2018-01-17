@@ -304,4 +304,57 @@ void DVK::HeapSort() {
 
 }
 
-void 
+// gibt true zurück wenn G1 > G2 in bezug auf middle [wenn beide gleich - false]
+bool DVK::groesser(GEOKO G1, GEOKO G2, GEOKO mid) {
+	GEOKO G1_fm, G2_fm; // G1, G2 "f"rom "m"iddle -> G1_fm
+
+	// Berechnung des Abstands zur mitte
+	G1_fm = abstand_mitte(G1, mid);
+	G2_fm = abstand_mitte(G2, mid);
+
+
+	
+	if (G1_fm.GetBrGr > G2_fm.GetBrGr) {
+		return true;
+	}
+	else if (G1_fm.GetBrGr == G2_fm.GetBrGr) {
+
+		if (G1_fm.GetBrMin > G2_fm.GetBrGr) {
+			return true;
+		}
+		else if (G1_fm.GetBrMin == G2_fm.GetBrMin) {
+
+			if (G1_fm.GetBrSec > G2_fm.GetBrSec) {
+				return true;
+			}
+			else {
+				false;
+			}
+		}
+		else {
+			return false;
+		}
+	}
+	else {
+		return false;
+	}
+
+
+
+}
+
+// gibt den Differenz GEOKO von G zur mitte zurück
+GEOKO DVK::abstand_mitte(GEOKO G, GEOKO mid) {
+	GEOKO *ret = new GEOKO();
+
+	ret->SetBrGr((G.GetBrGr - mid.GetBrGr));
+	ret->SetLaGr((G.GetLaGr - mid.GetLaGr));
+
+	ret->SetBrMin((G.GetBrMin - mid.GetBrMin));
+	ret->SetLaMin((G.GetLaMin - mid.GetLaMin));
+
+	ret->SetBrSec((G.GetBrSec - mid.GetBrSec));
+	ret->SetLaSec((G.GetLaSec - mid.GetLaSec));
+
+	return *ret;
+}
