@@ -14,6 +14,8 @@ public:
 	int GetLaMin() const { return LaMin; }
 	double GetBrSec() const { return BrSec; }
 	double GetLaSec() const { return LaSec; }
+	int Geta_num() const { return a_num; }
+
 
 
 	//Setter
@@ -23,6 +25,8 @@ public:
 	void SetLaMin(int LaMin) { this->LaMin = LaMin; }
 	void SetBrSec(double BrSec) { this->BrSec = BrSec; }
 	void SetLaSec(double LaSec) { this->LaSec = LaSec; }
+	void Seta_num(int a_num) { this->a_num = a_num; }
+
 
 	//Ausgabe als Zeile auf Konsole
 	void console_output();
@@ -37,5 +41,7 @@ private:
 	double BrSec;
 	double LaSec;
 
+	//für heapsort , wegen der geforderten funktion mit long werten bei tauschen
+	int a_num;
 };
 

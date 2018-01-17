@@ -15,6 +15,16 @@ GEONode::GEONode(GEOKO in_root, GEOKO in_left, GEOKO in_right, GEOKO in_mid, GEO
 
 //Sortiert den Knoten
 void GEONode::MaxNote() {
+	
+	if (groesser(*left, *root, *mid)) {
+		// wenn left größer root
+		vertausche(left->Geta_num, root->Geta_num);
+	}
+
+	if (groesser(*right, *root, *mid)) {
+		// wenn right größer root
+		vertausche(right->Geta_num, root->Geta_num);
+	}
 
 
 }
@@ -95,4 +105,6 @@ void GEONode::vertausche(long First, long Second) {
 	index[First].SetV(temp1.GetV());
 	index[First].SetN(temp1.GetN());
 
-}
+
+
+} 

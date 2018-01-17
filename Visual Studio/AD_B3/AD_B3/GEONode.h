@@ -22,7 +22,6 @@ public:
 	GEOKO *root = new GEOKO();	// root 
 	GEOKO *left = new GEOKO();	// Left
 	GEOKO *right = new GEOKO(); // Right
-
 	GEOKO *mid = new GEOKO(); // mitte
 
 	GEOKO index[];

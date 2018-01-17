@@ -24,6 +24,7 @@ DVK::DVK(long Anzahl) {
 		for (int i = 0; i<Anzahl; i++){
 
 			index[i] = new GEOKO();
+			index[i]->Seta_num(i);
 
 
 			// Zuweisung der Nachfolger bzw Vorgägner
@@ -219,6 +220,7 @@ void DVK::readData(string choice) {
 	//Berechnen der Minuten (ohne Nackommastellen)
 	B_M = (int)(nk_B_Grad * 60 + 0.5f);
 	L_M = (int)(nk_L_Grad * 60 + 0.5f);
+
 	//Nackommastellen auslesen
 	nk_B_Min = nk_B_Grad * 60 - (int)(nk_B_Grad * 60);
 	nk_L_Min = nk_L_Grad * 60 - (int)(nk_L_Grad * 60);
