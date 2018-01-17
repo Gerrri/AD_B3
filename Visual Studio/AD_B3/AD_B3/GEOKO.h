@@ -24,6 +24,9 @@ public:
 	void SetBrSec(double BrSec) { this->BrSec = BrSec; }
 	void SetLaSec(double LaSec) { this->LaSec = LaSec; }
 
+	//Ausgabe als Zeile auf Konsole
+	void console_output();
+
 
 
 private:

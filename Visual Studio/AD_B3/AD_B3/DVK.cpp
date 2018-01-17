@@ -9,9 +9,10 @@ using namespace std;
 
 
 // für initialisierung
-GEOKO *index[1000000];
+static GEOKO *index[1000000];
 
 
+//Konstruktor DVK
 DVK::DVK(long Anzahl) {
 
 	// Abfrage ob Anzahl in ordnung
@@ -54,6 +55,9 @@ DVK::DVK(long Anzahl) {
 		//Auslesen der Datei
 		readData(Menu());
 
+		//Ausgabe Middle
+		middle->console_output();
+
 		// zur erstellung der Index Liste
 		//init();
 		// -> verändert und oben bereits passiert
@@ -73,7 +77,7 @@ DVK::DVK(long Anzahl) {
 
 }
 
-// Ruft Menu zur auswahl einer Datei auf und gibt Datein als Strin "Datei.csv" zurück
+// Ruft Menu zur auswahl einer Datei auf und gibt den Dateiname als String "Datei.csv" zurück
 string DVK::Menu() {
 	int choice;
 	do {
@@ -99,7 +103,7 @@ string DVK::Menu() {
 	return 0;
 }
 
-// choice erwartet Dateiname
+// choice erwartet Dateiname als String
 void DVK::readData(string choice) {
 
 
@@ -107,10 +111,10 @@ void DVK::readData(string choice) {
 	double B_S, L_S; // L und B (Sek)
 	int B_M, L_M;    // L und B (Min)
 	int B_G, L_G;    // L und B (Grad)
-	double B=0, L=0;      // L und B aus Tabelle   
+	double B=0, L=0; // L und B aus Tabelle   
 
-	double nk_L_Grad, nk_B_Grad; // Nackomma länge und Breite GRAD
-	double nk_L_Min, nk_B_Min; // Nackomma länge und Breite MIN
+	double nk_L_Grad, nk_B_Grad;	// Nackomma länge und Breite GRAD
+	double nk_L_Min, nk_B_Min;		// Nackomma länge und Breite MIN
 
 	// für middle Berechnung
 	double ges_B_S=0;
@@ -235,126 +239,37 @@ void DVK::readData(string choice) {
 	middle->SetBrSec(B_S);
 	middle->SetLaSec(L_S);
 
-
-
+	
 
 	f.clear(); 
 	f.close();
 }
 
-// Aufruf mit : vertausche(index1, index2);
-void DVK::vertausche(long First, long Second) {
-	// First and Second sind index1 und index2 der zu tauschenden Elemente
-	
-	// temporäre Variablen für index[First]
-	DVKE *V_1 = new DVKE();
-	DVKE *N_1 = new DVKE();
-	GEOKO *temp1;
-
-	// temporäre Variablen für index[First]
-	DVKE *V_2 = new DVKE();
-	DVKE *N_2 = new DVKE();
-	GEOKO *temp2;
-
-
-	//zwischenspeichern der index[First Werte]
-	temp1 = index[First];
-	V_1->SetV(index[First]->GetV());
-	N_1->SetN(index[First]->GetN());
-
-
-	//zwischenspeichern der index[First Werte]
-	temp2 = index[Second];
-	V_2->SetV(index[Second]->GetV());
-	N_2->SetN(index[Second]->GetN());
-
-
-	// +++++++++ FIRST +++++++++
-		//Zeiger von Objekt (bei Adresse First) -> Second
-
-		// überschreibe First = Second ( V und N)
-		index[First]->SetV(index[Second]->GetV());
-		index[First]->SetN(index[Second]->GetN());
-
-		// überschreibe eigentliche Adresse
-		index[First] = index[Second];
-
-	// +++++++++ SECOND +++++++++
-		//Zeiger von Objekt (bei Adresse Second) -> First
-
-		// überschreibe Second = First[aus zwischenspeicher] (V und N)
-		index[Second]->SetV(V_1);
-		index[Second]->SetN(N_1);
-#
-
-		// überschreibe eigentliche Adresse
-		index[Second] = temp1;
-
-
-	// Fertig Getauscht !
-}		
 
 void DVK::HeapSort() {
 
+	//Knoten = index
+	//Knoten 1 -> 2,3 || Knoten 2 -> 4,5 || Knoten 3 -> 6,7
+	//Knoten + (Knoten -1) = Anfang der Kinder
+	GEOKO temp[1000000];
 
+	// Anzahl der Heapelemente pro Zeile
+	for (int i = 1; i < anz; i=i*2) {
 
-
-
-
-
-}
-
-// gibt true zurück wenn G1 > G2 in bezug auf middle [wenn beide gleich - false]
-bool DVK::groesser(GEOKO G1, GEOKO G2, GEOKO mid) {
-	GEOKO G1_fm, G2_fm; // G1, G2 "f"rom "m"iddle -> G1_fm
-
-	// Berechnung des Abstands zur mitte
-	G1_fm = abstand_mitte(G1, mid);
-	G2_fm = abstand_mitte(G2, mid);
-
-
-	
-	if (G1_fm.GetBrGr > G2_fm.GetBrGr) {
-		return true;
-	}
-	else if (G1_fm.GetBrGr == G2_fm.GetBrGr) {
-
-		if (G1_fm.GetBrMin > G2_fm.GetBrGr) {
-			return true;
+		for (int j = 0; j < i; j++) {
+			//temp[0] = index[0];
 		}
-		else if (G1_fm.GetBrMin == G2_fm.GetBrMin) {
 
-			if (G1_fm.GetBrSec > G2_fm.GetBrSec) {
-				return true;
-			}
-			else {
-				false;
-			}
-		}
-		else {
-			return false;
-		}
-	}
-	else {
-		return false;
+
 	}
 
 
-
 }
+// Verwaltung für GEONote
 
-// gibt den Differenz GEOKO von G zur mitte zurück
-GEOKO DVK::abstand_mitte(GEOKO G, GEOKO mid) {
-	GEOKO *ret = new GEOKO();
 
-	ret->SetBrGr((G.GetBrGr - mid.GetBrGr));
-	ret->SetLaGr((G.GetLaGr - mid.GetLaGr));
 
-	ret->SetBrMin((G.GetBrMin - mid.GetBrMin));
-	ret->SetLaMin((G.GetLaMin - mid.GetLaMin));
 
-	ret->SetBrSec((G.GetBrSec - mid.GetBrSec));
-	ret->SetLaSec((G.GetLaSec - mid.GetLaSec));
 
-	return *ret;
-}
+
+

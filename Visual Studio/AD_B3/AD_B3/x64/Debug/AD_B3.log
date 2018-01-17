@@ -1,8 +1,2 @@
-﻿  stdafx.cpp
-  main.cpp
-  GEOKO.cpp
-  DVKE.cpp
-  DVK.cpp
-  Code wird generiert...
-  LINK : C:\Users\Dustin\Documents\GitHub\AD_B3\Visual Studio\AD_B3\x64\Debug\AD_B3.exe wurde nicht gefunden oder beim letzten inkrementellen Linkvorgang nicht erstellt; vollständiger Link wird durchgeführt.
+﻿  GEOKO.cpp
   AD_B3.vcxproj -> C:\Users\Dustin\Documents\GitHub\AD_B3\Visual Studio\AD_B3\x64\Debug\AD_B3.exe
