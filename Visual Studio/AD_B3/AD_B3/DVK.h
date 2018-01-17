@@ -13,6 +13,8 @@ public:
 	//void heapDown(long Anzahl, long Knoten);
 	//void erzeugeHeap(long Anzahl);
 	void vertausche(long First, long Second);
+	
+
 
 
 

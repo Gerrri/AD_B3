@@ -2,6 +2,11 @@
 #include "DVK.h"
 #include <fstream>
 #include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+#include <string>
+using namespace std;
+
 
 // für initialisierung
 GEOKO *index[1000000];
@@ -42,8 +47,8 @@ DVK::DVK(long Anzahl) {
 		}
 
 		// Anker bestücken:
-		*V_Anker = *index[0];
-		*N_Anker = *index[Anzahl];
+		V_Anker = index[0];
+		N_Anker = index[Anzahl-1];
 
 		//Auswahl der Datei [Dateiname -> choice]
 		//Auslesen der Datei
@@ -79,13 +84,13 @@ string DVK::Menu() {
 		cin >> choice;
 
 		switch (choice) {
-		case 1:cout << "Datei.csv ausgewählt" << endl;
+		case 1:cout << "Daten.csv ausgewählt" << endl;
 			cout << "Lade Datei ..." << endl;
-			return "Datei.csv";
+			return "Daten.csv";
 			break;
-		case 2:cout << "Datei1.csv ausgewählt" << endl;
+		case 2:cout << "Daten1.csv ausgewählt" << endl;
 			cout << "Lade Datei ..." << endl;
-			return "Datei1.csv";
+			return "Daten1.csv";
 			break;
 		}
 
@@ -102,32 +107,41 @@ void DVK::readData(string choice) {
 	double B_S, L_S; // L und B (Sek)
 	int B_M, L_M;    // L und B (Min)
 	int B_G, L_G;    // L und B (Grad)
-	double B, L;      // L und B aus Tabelle   
+	double B=0, L=0;      // L und B aus Tabelle   
 
 	double nk_L_Grad, nk_B_Grad; // Nackomma länge und Breite GRAD
 	double nk_L_Min, nk_B_Min; // Nackomma länge und Breite MIN
 
+	// für middle Berechnung
+	double ges_B_S=0;
+	double ges_L_S=0;
 
 
 
-	ifstream f;
-	f.open(choice, ios::in);
-	char* input = 0;
-
+	ifstream f(choice) ;
+	//f.open(choice, ios::in);
+	string input;
 	int zaehler_zeile = 0;
-	while (!f.eof())
-	{
-		//f.getline(f, input);
+	
+	
+
+	//while (!f.eof()){
+	while(getline(f, input) && zaehler_zeile < anz){
 		
-		f.getline(input, 99);
+		//cout << input << endl;
+		char in_arr[100];
+		#pragma warning(suppress : 4996)
+		strcpy(in_arr, input.c_str());
+
+
 
 		//Sekunden einfügen/einelesen
 		#pragma warning(suppress : 4996)	
-		char* char_array = strtok(input, ","); //Sprung auf ersten eintrag
+		char* char_array = strtok(in_arr, ","); //Sprung auf ersten eintrag
 		B = atof(char_array); // Umwandeln des Wertes in einen Double
 
 		#pragma warning(suppress : 4996)		
-		char_array = strtok(input, ","); //Sprung auf zweiten eintrag
+		char_array = strtok(NULL, ","); //Sprung auf zweiten eintrag
 		L = atof(char_array); // Umwandeln des Wertes in einen Double
 
 		// Grad = L bzw B / 3600 (nachkomma auslagern) --- L_B = L \ 3600
@@ -170,9 +184,58 @@ void DVK::readData(string choice) {
 
 
 
+		//Gesamt L und B für Berechnung von middle
+		ges_B_S = ges_B_S + B;
+		ges_L_S = ges_L_S + L;
+
+
+
 		// nächste zeile
 		zaehler_zeile++;
 	}
+
+	//Berechnung middle [Quick and Dirty - Sorry]
+	//initialisierung
+	middle = new GEOKO();
+	
+	B = ges_B_S / anz;
+	L = ges_L_S / anz;
+
+
+
+	//Berechnen des Grads (ohne Nackommastellen)
+	B_G = (int)(B / 3600 + 0.5f);
+	L_G = (int)(L / 3600 + 0.5f);
+
+	//Nachkommastellen auslesen
+	nk_B_Grad = B / 3600 - (int)(B / 3600);
+	nk_L_Grad = L / 3600 - (int)(L / 3600);
+
+
+	//Berechnen der Minuten (ohne Nackommastellen)
+	B_M = (int)(nk_B_Grad * 60 + 0.5f);
+	L_M = (int)(nk_L_Grad * 60 + 0.5f);
+	//Nackommastellen auslesen
+	nk_B_Min = nk_B_Grad * 60 - (int)(nk_B_Grad * 60);
+	nk_L_Min = nk_L_Grad * 60 - (int)(nk_L_Grad * 60);
+
+
+	//Berechne rest Sekunden
+	B_S = nk_B_Min * 60;
+	L_S = nk_L_Min * 60;
+
+
+	//zuweisung Grad
+	middle->SetBrGr(B_G);
+	middle->SetLaGr(L_G);
+	//zuweisung Minuten
+	middle->SetBrMin(B_M);
+	middle->SetLaMin(L_M);
+	//zuweisung Sekunden
+	middle->SetBrSec(B_S);
+	middle->SetLaSec(L_S);
+
+
 
 
 	f.clear(); 
@@ -188,10 +251,22 @@ void DVK::vertausche(long First, long Second) {
 	DVKE *N_1 = new DVKE();
 	GEOKO *temp1;
 
+	// temporäre Variablen für index[First]
+	DVKE *V_2 = new DVKE();
+	DVKE *N_2 = new DVKE();
+	GEOKO *temp2;
+
+
 	//zwischenspeichern der index[First Werte]
 	temp1 = index[First];
 	V_1->SetV(index[First]->GetV());
 	N_1->SetN(index[First]->GetN());
+
+
+	//zwischenspeichern der index[First Werte]
+	temp2 = index[Second];
+	V_2->SetV(index[Second]->GetV());
+	N_2->SetN(index[Second]->GetN());
 
 
 	// +++++++++ FIRST +++++++++
@@ -210,6 +285,7 @@ void DVK::vertausche(long First, long Second) {
 		// überschreibe Second = First[aus zwischenspeicher] (V und N)
 		index[Second]->SetV(V_1);
 		index[Second]->SetN(N_1);
+#
 
 		// überschreibe eigentliche Adresse
 		index[Second] = temp1;
