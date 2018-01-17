@@ -293,3 +293,15 @@ void DVK::vertausche(long First, long Second) {
 
 	// Fertig Getauscht !
 }		
+
+void DVK::HeapSort() {
+
+
+
+
+
+
+
+}
+
+void 

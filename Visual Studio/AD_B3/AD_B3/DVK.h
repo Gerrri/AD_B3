@@ -13,6 +13,9 @@ public:
 	//void heapDown(long Anzahl, long Knoten);
 	//void erzeugeHeap(long Anzahl);
 	void vertausche(long First, long Second);
+	void vergleich(GEOKO G1, GEOKO G2) {
+
+	}
 	
 
 
@@ -21,7 +24,7 @@ public:
 private:
 	//Konstruktor
 
-	//void HeapSort() ;// in DVK Konstruktor
+	void HeapSort() ;// in DVK Konstruktor
 	string Menu() ; // Menü zur abfrage der der Datei
 	void readData(string choice);
 
