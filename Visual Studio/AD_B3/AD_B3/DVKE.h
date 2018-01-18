@@ -13,7 +13,7 @@ public:
 	void SetV(DVKE* V) { this->V = V; }
 
 
-private:
+private: 
 	DVKE *V; // Element daVOR
 	DVKE *N; // Element daNACH
 };

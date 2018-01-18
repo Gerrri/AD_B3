@@ -2,6 +2,7 @@
 using namespace std;
 #include <iostream>
 #include "GEOKO.h"
+#include "GEONode.h"
 
 class DVK
 {
@@ -13,25 +14,24 @@ public:
 	//void heapDown(long Anzahl, long Knoten);
 	//void erzeugeHeap(long Anzahl);
 	void vertausche(long First, long Second);
-	bool groesser(GEOKO G1, GEOKO G2, GEOKO mid);
-	GEOKO abstand_mitte(GEOKO G, GEOKO mid);
-
+	void HeapSort();// in DVK Konstruktor
+	void console_output_list(); // vosichtig ! gibt alle elemente aus !
+	void create_File(string choice);
 
 private:
 	//Konstruktor
 
-	void HeapSort() ;// in DVK Konstruktor
+	
 	string Menu() ; // Menü zur abfrage der der Datei
 	void readData(string choice);
-
+	
 	//Varaibalen zu Verankerung / Mitte
 	GEOKO *V_Anker;
 	GEOKO *N_Anker;
 	GEOKO *middle;
 
-	
-
-	int anz = 0;
+	int anz = 0;	 // anzahl objekte im array
+	int anz_uns = 0; // anzahl der unsortieren elemente im array (von links)
 
 	
 	

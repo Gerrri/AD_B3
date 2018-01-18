@@ -1,5 +1,7 @@
 #pragma once
 #include "DVKE.h"
+#include "GEOKO.h"
+#include <string>
 class GEOKO :
 	public DVKE
 {
@@ -28,8 +30,14 @@ public:
 	void Seta_num(int a_num) { this->a_num = a_num; }
 
 
+	//Überladungen
+	double operator-(GEOKO& in);
+
 	//Ausgabe als Zeile auf Konsole
 	void console_output();
+
+	// RÜckgabe eines Strings mit den werten des Objekts
+	string filestring();
 
 
 

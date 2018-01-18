@@ -1,14 +1,17 @@
 #include "stdafx.h"
 #include "GEONode.h"
+#include <stdlib.h>
 
 
-GEONode::GEONode(GEOKO in_root, GEOKO in_left, GEOKO in_right, GEOKO in_mid, GEOKO *index_in) {
-	*root = in_root;
-	*left = in_left;
-	*right = in_right;
+GEONode::GEONode(GEOKO *in_root, GEOKO *in_left, GEOKO *in_right, GEOKO *in_mid, GEOKO *index_in) {
+	root = in_root;
+	left = in_left;
+	right = in_right;
 
-	*mid = in_mid;
+	mid = in_mid;
 	*index = *index_in;
+
+	//MaxNote();
 
 }
 
@@ -16,14 +19,14 @@ GEONode::GEONode(GEOKO in_root, GEOKO in_left, GEOKO in_right, GEOKO in_mid, GEO
 //Sortiert den Knoten
 void GEONode::MaxNote() {
 	
-	if (groesser(*left, *root, *mid)) {
+	if (true/*groesser(*left, *root, *mid)*/) {
 		// wenn left größer root
-		vertausche(left->Geta_num, root->Geta_num);
+		vertausche(left->Geta_num(), root->Geta_num());
 	}
 
 	if (groesser(*right, *root, *mid)) {
 		// wenn right größer root
-		vertausche(right->Geta_num, root->Geta_num);
+		vertausche(right->Geta_num(), root->Geta_num());
 	}
 
 
@@ -108,3 +111,10 @@ void GEONode::vertausche(long First, long Second) {
 
 
 } 
+
+void GEONode::console_output() {
+	root->console_output();
+	left->console_output();
+	right->console_output();
+}
+

@@ -10,7 +10,7 @@ using namespace std;
 
 // für initialisierung
 static GEOKO *index[1000000];
-
+string choice;
 
 //Konstruktor DVK
 DVK::DVK(long Anzahl) {
@@ -19,12 +19,13 @@ DVK::DVK(long Anzahl) {
 	if (Anzahl <= 1000000) {
 		
 		anz = Anzahl;
-		int const x = Anzahl;
+		anz_uns = Anzahl;
+		//int const x = Anzahl;
 
 		for (int i = 0; i<Anzahl; i++){
 
 			index[i] = new GEOKO();
-			index[i]->Seta_num(i);
+			index[i]->Seta_num(i); // code leiche
 
 
 			// Zuweisung der Nachfolger bzw Vorgägner
@@ -41,7 +42,7 @@ DVK::DVK(long Anzahl) {
 			}
 			else {
 				// Beim ersten Element vorgänger = NULL
-				index[i]->SetV(0);
+				index[i]->SetV(nullptr);
 
 			}
 
@@ -54,11 +55,16 @@ DVK::DVK(long Anzahl) {
 
 		//Auswahl der Datei [Dateiname -> choice]
 		//Auslesen der Datei
-		readData(Menu());
+		choice = Menu();
+		readData(choice);
 
 		//Ausgabe Middle
+		cout << "" << endl;
+		cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+		cout << "Mittelpunkt der Daten liegt bei :" << endl;
 		middle->console_output();
-
+		cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+		cout << "" << endl;
 		// zur erstellung der Index Liste
 		//init();
 		// -> verändert und oben bereits passiert
@@ -252,25 +258,100 @@ void DVK::HeapSort() {
 
 	//Knoten = index
 	//Knoten 1 -> 2,3 || Knoten 2 -> 4,5 || Knoten 3 -> 6,7
-	//Knoten + (Knoten -1) = Anfang der Kinder
-	GEOKO temp[1000000];
+	//Knotenindex + (Knotenindex +1) = Anfang der Kinder
+	//+-----------------+------------------+
+	//|    Kind 1       |      Kind 2      |
+	//+-----------------|------------------|
+	//| Knotenindex *2  | Kind1.index +1   |
+	//+-----------------+------------------+
+	
+	// Gegeben
+	// Anzahl der Objekte im Array "anz"
+	// Anzahl der noch zu sortierenden Objekte "anz_uns"
+	// sortierte anz - unsoriterte
 
-	// Anzahl der Heapelemente pro Zeile
-	for (int i = 1; i < anz; i=i*2) {
 
-		for (int j = 0; j < i; j++) {
-			//temp[0] = index[0];
-		}
+	int AktNode; // Aktueler Knoten
+	// Schleife für runterzäglen von knoten
+	
+	for (int i=anz_uns; i > 0; i--) {
+		AktNode = (int)(anz_uns / 2); // bei 7 elementen anfang bei 7/2 = 3.5 -> Knoten(index) 3
+
+		/*root */ index[AktNode];
+		/*left */ index[AktNode * 2];
+		/*right*/ index[AktNode * 2 + 1];
+
+
+			// left > root
+			if ((index[AktNode] - middle) - (index[AktNode * 2] - middle) > 0, 0001) {
+				//vertausche root und left
+				vertausche(AktNode, (AktNode * 2));
+			}
+
+			// wenn Anzahl unsortierte elem. = AktNode * 2 + 1
+			if (anz_uns == (AktNode*2+1)) {
+				// right > root
+				if ((index[AktNode] - middle) - (index[AktNode * 2 + 1] - middle) > 0, 0001) {
+					// vertausche root und right
+					vertausche(AktNode, (AktNode * 2 +1));
+				}
+			}
+
+		// letzten Knoten Ermittlen (anz_uns / 2 [ohne nachkommastelle])
+
 
 
 	}
-
-
 }
 // Verwaltung für GEONote
 
+void DVK::vertausche(long First, long Second) {
+
+	// temporäre gespeichert G1
+	//	GEOKO *temp1 = index[First];
+
+	GEOKO *temp1 = new GEOKO;
+	temp1 = index[First];
+
+	//Elemente komplett getauscht
+	index[First] = index[Second];
+	index[Second] = temp1;
 
 
+	// ehemalig First zeiger für DVK korrigiern  
+	//index[Second]->SetV(index[First]->GetV());
+	//index[Second]->SetN(index[First]->GetN());
+
+	// ehemalig Second zeiger für DVK korrigiern
+	//index[First]->SetV(temp1->GetV());
+	//index[First]->SetN(temp1->GetN());
+}
+
+//ACHTUNG !!! Gibt ALLE Elemente der Lise aus !
+void DVK::console_output_list() {
+	for (int i = 0; i<anz; i++) {
+		index[i]->console_output();
+	}
+}
+
+//Achtung alle datensätze werden in das File geschrieben
+void DVK::create_File(string choice){
+	ofstream file;
+	file.open(choice, ios::out | ios::app | ios::binary);
+
+	if (file.is_open()) {
+		for (int i = 0; i < anz; i++) {
+			file << " ###[Format: (LängenGrad/BreitenGrad) || (LängenMinute/BreitenMinute) || (LängenSekunde/BreitenSekunde])";
+			file << index[i]->file_string;
+		}
+
+		file.close();
+	}
+	else {
+		cout << "Datei konnte nicht geöffnet werden!" << endl;
+	}
+
+}
 
 
 
