@@ -10,7 +10,7 @@ GEOKO::GEOKO() : BrGr(NULL), LaGr(NULL), BrMin(NULL), LaMin(NULL), BrSec(NULL), 
 }
 
 void GEOKO::console_output() {
-	cout<<"("<< BrGr << "/" << LaGr <<")  "<<"||"<<"  (" << BrMin << "/" << LaMin << ")  " <<"||"<< "  (" << BrSec << "/" << LaSec << ")" <<" ###[Format: (LängenGrad/BreitenGrad) || (LängenMinute/BreitenMinute) || (LängenSekunde/BreitenSekunde])" <<endl;
+	cout<< "(" << to_string(aus_csvB) << "/" << to_string(aus_csvL) << ")" << " || "<< "("<< BrGr << "/" << LaGr <<")  "<<"||"<<"  (" << BrMin << "/" << LaMin << ")  " <<"||"<< "  (" << BrSec << "/" << LaSec << ")" <</*" ###[Format: (LängenGrad/BreitenGrad) || (LängenMinute/BreitenMinute) || (LängenSekunde/BreitenSekunde])" <<*/endl;
 }
 
 
@@ -31,10 +31,12 @@ double GEOKO::operator-(GEOKO &in) {
 
 	return distance;
 }
+//string & GEOKO::filestring(string & n){
+	//char*  a = "(" + to_string(this->BrGr) + "/" + to_string(this->LaGr) + ")  " + "||" + "  (" + to_string(this->BrMin) + "/" + to_string(this->LaMin) + ")  " + "||" + "  (" + to_string(this->BrSec) + "/" + to_string(this->LaSec) + ")";
+	//n.clear(); // string leeren
+	//n = "(" + to_string(BrGr) + "/" + to_string(LaGr) + ")  " + "||" + "  (" + to_string(BrMin) + "/" + to_string(LaMin) + ")  " + "||" + "  (" + to_string(BrSec) + "/" + to_string(LaSec) + ")";
+	
+	
 
-string GEOKO::filestring(){
-	
-	string  a = "(" + to_string(BrGr) + "/" + to_string(LaGr) + ")  " + "||" + "  (" + to_string(BrMin) + "/" + to_string(LaMin) + ")  " + "||" + "  (" + to_string(BrSec) + "/" + to_string(LaSec) + ")";
-	
-	return a;
-}
+	//return n;
+//}

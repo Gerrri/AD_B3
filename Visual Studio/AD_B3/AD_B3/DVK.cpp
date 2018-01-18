@@ -160,8 +160,8 @@ void DVK::readData(string choice) {
 		// Sekunden = (nachkomma von Minuten)
 
 		//Berechnen des Grads (ohne Nackommastellen)
-		B_G = (int)(B / 3600 + 0.5f);
-		L_G = (int)(L / 3600 + 0.5f);
+		B_G = (int)(B / 3600);
+		L_G = (int)(L / 3600);
 
 		//Nachkommastellen auslesen
 		nk_B_Grad = B / 3600 - (int)(B/3600);
@@ -169,8 +169,9 @@ void DVK::readData(string choice) {
 
 
 		//Berechnen der Minuten (ohne Nackommastellen)
-		B_M = (int)(nk_B_Grad * 60 + 0.5f);
-		L_M = (int)(nk_L_Grad * 60 + 0.5f);
+		B_M = (int)(nk_B_Grad * 60);
+		L_M = (int)(nk_L_Grad * 60);
+
 		//Nackommastellen auslesen
 		nk_B_Min = nk_B_Grad * 60 - (int)(nk_B_Grad * 60);
 		nk_L_Min = nk_L_Grad * 60 - (int)(nk_L_Grad * 60);
@@ -182,7 +183,9 @@ void DVK::readData(string choice) {
 
 
 
-
+		//zuweisung inhalt liste
+		index[zaehler_zeile]->Setaus_csvB(B);
+		index[zaehler_zeile]->Setaus_csvL(L);
 		//zuweisung Grad
 		index[zaehler_zeile]->SetBrGr(B_G);
 		index[zaehler_zeile]->SetLaGr(L_G);
@@ -237,6 +240,10 @@ void DVK::readData(string choice) {
 	L_S = nk_L_Min * 60;
 
 
+
+	//zuweisung inhalt liste
+	middle->Setaus_csvB(B);
+	middle->Setaus_csvL(L);
 	//zuweisung Grad
 	middle->SetBrGr(B_G);
 	middle->SetLaGr(L_G);
@@ -297,8 +304,8 @@ void DVK::HeapSort() {
 				}
 			}
 
-		// letzten Knoten Ermittlen (anz_uns / 2 [ohne nachkommastelle])
-
+		
+			anz_uns--;
 
 
 	}
@@ -315,7 +322,7 @@ void DVK::vertausche(long First, long Second) {
 
 	//Elemente komplett getauscht
 	index[First] = index[Second];
-	index[Second] = temp1;
+	index[First] = temp1;
 
 
 	// ehemalig First zeiger für DVK korrigiern  
@@ -337,12 +344,29 @@ void DVK::console_output_list() {
 //Achtung alle datensätze werden in das File geschrieben
 void DVK::create_File(string choice){
 	ofstream file;
-	file.open(choice, ios::out | ios::app | ios::binary);
+	file.open(choice, std::ofstream::out | std::ofstream::trunc);
+	string temp;
+	string sec_L_s, sec_B_s;
+
+	double sec_B, sec_L;
 
 	if (file.is_open()) {
+		file.clear();
+		//file << " [Format: (LängenGrad/BreitenGrad) || (LängenMinute/BreitenMinute) || (LängenSekunde/BreitenSekunde])" << endl;
 		for (int i = 0; i < anz; i++) {
-			file << " ###[Format: (LängenGrad/BreitenGrad) || (LängenMinute/BreitenMinute) || (LängenSekunde/BreitenSekunde])";
-			file << index[i]->file_string;
+
+			
+
+			
+			sec_L = (index[i]->GetLaGr() * 3600) + (index[i]->GetLaMin() * 60) + index[i]->GetLaSec();
+			sec_B = (index[i]->GetBrGr() * 3600) + (index[i]->GetBrMin() * 60) + index[i]->GetBrSec();
+			
+			sec_L_s = to_string(sec_L);
+			sec_B_s = to_string(sec_B);
+
+			file << sec_B_s << ", " << sec_L_s << ";" <<endl;
+
+
 		}
 
 		file.close();
