@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "DVK.h"
+#include "DVKE.h"
 #include <fstream>
 #include <stdio.h>
 #include <math.h>
@@ -350,13 +351,28 @@ void DVK::vertausche(long First, long Second) {
 	// temporäre gespeichert G1
 	//	GEOKO *temp1 = index[First];
 
+	DVKE *t_V, *t_N;
+
 	GEOKO *temp1 = new GEOKO;
 	temp1 = index[First];
+	t_V = index[First]->GetV();
+	t_N = index[First]->GetN();
+	
+
+
+	index[First]->SetN(index[Second]->GetN());
+	index[First]->SetV(index[Second]->GetV());
+
+
 
 	//Elemente komplett getauscht
 	index[First] = index[Second];
 	index[Second] = temp1;
 
+
+
+	index[Second]->SetN(temp1->GetN());
+	index[Second]->SetV(temp1->GetV());
 
 	// ehemalig First zeiger für DVK korrigiern  
 	//index[Second]->SetV(index[First]->GetV());

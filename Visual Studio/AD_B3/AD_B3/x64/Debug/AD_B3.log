@@ -1,10 +1,5 @@
-﻿  GEOKO.cpp
-  DVK.cpp
+﻿  DVK.cpp
 c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\geonode.h(27): warning C4200: Nicht dem Standard entsprechende Erweiterung: Null-Array in Struktur/Union
   c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\geonode.h(27): note: Dieser Member wird vom Standardkonstruktor oder Zuweisungsoperator für Kopieren/Verschieben ignoriert.
 c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(320): warning C4244: "=": Konvertierung von "__int64" in "double", möglicher Datenverlust
-  Code wird generiert...
-  Überspringen... (keine relevanten Änderungen gefunden)
-  main.cpp
-  GEONode.cpp
   AD_B3.vcxproj -> C:\Users\Dustin\Documents\GitHub\AD_B3\Visual Studio\AD_B3\x64\Debug\AD_B3.exe
