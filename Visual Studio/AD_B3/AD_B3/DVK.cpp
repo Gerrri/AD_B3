@@ -280,37 +280,70 @@ void DVK::HeapSort() {
 
 	int AktNode; // Aktueler Knoten
 	// Schleife für runterzäglen von knoten
+	double temp_ver, d_p1, d_p2;
 	
-	for (int i=anz_uns; i > 0; i--) {
+	anz_uns = anz;
+
+
+	for (int i=anz_uns; i > 1; i--) {
 		AktNode = (int)(anz_uns / 2); // bei 7 elementen anfang bei 7/2 = 3.5 -> Knoten(index) 3
+		AktNode = AktNode - 1;
 
-		/*root */ index[AktNode];
-		/*left */ index[AktNode * 2];
-		/*right*/ index[AktNode * 2 + 1];
+		///*root */ index[AktNode];
+		///*left */ index[AktNode * 2 ];
+		///*right*/ index[AktNode * 2 + 1];
 
-
+			
+		
+			
 			// left > root
-			if ((index[AktNode] - middle) - (index[AktNode * 2] - middle) > 0, 0001) {
+			// temp Debug zwecke
+			
+
+
+
+			//d_p1 = index[AktNode] - middle;
+			//d_p2 = index[AktNode * 2 + 1] - middle;
+			d_p1 = index[AktNode]->abstand(*middle);
+			d_p2 = index[AktNode * 2 + 1]->abstand(*middle);
+
+			temp_ver = (d_p1) - (d_p2);
+
+
+			
+			if ( temp_ver > 0.0001){
 				//vertausche root und left
-				vertausche(AktNode, (AktNode * 2));
+				vertausche(AktNode, (AktNode * 2 + 1)); // +1  = korrektur dex index
 			}
 
-			// wenn Anzahl unsortierte elem. = AktNode * 2 + 1
-			if (anz_uns == (AktNode*2+1)) {
-				// right > root
-				if ((index[AktNode] - middle) - (index[AktNode * 2 + 1] - middle) > 0, 0001) {
-					// vertausche root und right
-					vertausche(AktNode, (AktNode * 2 +1));
+			if ((anz_uns+1) == AktNode * 2 + 2) {
+				temp_ver = (index[AktNode] - middle) - (index[AktNode * 2 + 2] - middle);
+				if (temp_ver < 0.0001) {
+					vertausche(AktNode, (AktNode * 2 + 2)); // +2  = korrektur dex index
 				}
 			}
 
-		
+			// wenn Anzahl unsortierte elem. = AktNode * 2 + 2
+			//temp = AktNode * 2 + 2;
+			//if (anz_uns == temp) {
+				// right > root
+			//	if ((index[AktNode] - middle) - (index[AktNode * 2 + 2] - middle) > 0, 0001) {
+					// vertausche root und right
+			//		vertausche(AktNode, (AktNode * 2 + 2));
+			//	}
 			anz_uns--;
+		}
+
+		
+			
 
 
 	}
-}
+
+
 // Verwaltung für GEONote
+
+
 
 void DVK::vertausche(long First, long Second) {
 
@@ -322,7 +355,7 @@ void DVK::vertausche(long First, long Second) {
 
 	//Elemente komplett getauscht
 	index[First] = index[Second];
-	index[First] = temp1;
+	index[Second] = temp1;
 
 
 	// ehemalig First zeiger für DVK korrigiern  

@@ -20,14 +20,31 @@ double GEOKO::operator-(GEOKO &in) {
 	double sec2_B, sec2_L;
 	double distance;
 
-	sec1_B = (this->BrGr * 3600) + (this->BrMin * 60) + this->BrSec;
-	sec1_L = (this->LaGr * 3600) + (this->LaMin * 60) + this->LaSec;
+	sec1_B = this->aus_csvB;
+	sec1_L = this->aus_csvL;
 
-	sec2_B = (in.GetBrGr() * 3600) + (in.GetBrMin() * 60) + in.GetBrSec();
-	sec2_L = (in.GetLaGr() * 3600) + (in.GetLaMin() * 60) + in.GetLaSec();
+	sec2_B = in.aus_csvB;
+	sec2_L = in.aus_csvL;
 
 
-	distance = sqrt(pow(sec1_B - sec1_L, 2) + pow(sec2_B - sec2_L, 2));
+	distance = sqrt(pow(sec1_B - sec2_B, 2) + pow(sec1_L - sec2_L, 2));
+
+	return distance;
+}
+
+double GEOKO::abstand(GEOKO in) {
+	double sec1_B, sec1_L;
+	double sec2_B, sec2_L;
+	double distance;
+
+	sec1_B = this->aus_csvB;
+	sec1_L = this->aus_csvL;
+
+	sec2_B = in.aus_csvB;
+	sec2_L = in.aus_csvL;
+
+
+	distance = sqrt(pow(sec1_B - sec2_B, 2) + pow(sec1_L - sec2_L, 2));
 
 	return distance;
 }

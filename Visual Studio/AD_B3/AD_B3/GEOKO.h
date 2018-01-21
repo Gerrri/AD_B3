@@ -39,6 +39,7 @@ public:
 
 	//Überladungen
 	double operator-(GEOKO& in);
+	double abstand(GEOKO in);
 
 	//Ausgabe als Zeile auf Konsole
 	void console_output();

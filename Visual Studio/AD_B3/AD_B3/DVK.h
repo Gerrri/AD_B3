@@ -15,6 +15,7 @@ public:
 	//void erzeugeHeap(long Anzahl);
 	void vertausche(long First, long Second);
 	void HeapSort();// in DVK Konstruktor
+	void MaxHeap(); // erzeug maxheap
 	void console_output_list(); // vosichtig ! gibt alle elemente aus !
 	void create_File(string choice);
 
