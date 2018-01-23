@@ -18,10 +18,9 @@ public:
 	double GetBrSec() const { return BrSec; }
 	double GetLaSec() const { return LaSec; }
 	int Geta_num() const { return a_num; }
-	//zum Debuggen
 	double Getaus_csvB() const { return aus_csvB; }
 	double Getaus_csvL() const { return aus_csvL; }
-
+	double Getdist() const { return dist; }
 
 
 	//Setter
@@ -32,9 +31,9 @@ public:
 	void SetBrSec(double BrSec) { this->BrSec = BrSec; }
 	void SetLaSec(double LaSec) { this->LaSec = LaSec; }
 	void Seta_num(int a_num) { this->a_num = a_num; }
-	//zum Debuggen
 	void Setaus_csvB(double aus_csvB) { this->aus_csvB = aus_csvB; }
 	void Setaus_csvL(double aus_csvL) { this->aus_csvL = aus_csvL; }
+	void Setdist(double dist) { this->dist = dist; }
 
 
 	//Überladungen
@@ -62,6 +61,8 @@ private:
 	int LaMin;
 	double BrSec;
 	double LaSec;
+
+	double dist;// abstand zum Mittelpunkt
 
 	
 

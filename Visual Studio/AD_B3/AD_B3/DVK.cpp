@@ -182,7 +182,8 @@ void DVK::readData(string choice) {
 		B_S = nk_B_Min * 60;
 		L_S = nk_L_Min * 60;
 
-
+		// Berechnung Abstand zum Mittelpunkt + Zuweisung
+		index[zaehler_zeile]->Setdist(index[zaehler_zeile]->abstand(*middle));
 
 		//zuweisung inhalt liste
 		index[zaehler_zeile]->Setaus_csvB(B);

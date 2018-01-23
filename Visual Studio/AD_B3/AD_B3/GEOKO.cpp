@@ -53,8 +53,6 @@ double GEOKO::abstand(GEOKO in) {
 	//char*  a = "(" + to_string(this->BrGr) + "/" + to_string(this->LaGr) + ")  " + "||" + "  (" + to_string(this->BrMin) + "/" + to_string(this->LaMin) + ")  " + "||" + "  (" + to_string(this->BrSec) + "/" + to_string(this->LaSec) + ")";
 	//n.clear(); // string leeren
 	//n = "(" + to_string(BrGr) + "/" + to_string(LaGr) + ")  " + "||" + "  (" + to_string(BrMin) + "/" + to_string(LaMin) + ")  " + "||" + "  (" + to_string(BrSec) + "/" + to_string(LaSec) + ")";
-	
-	
 
 	//return n;
 //}
