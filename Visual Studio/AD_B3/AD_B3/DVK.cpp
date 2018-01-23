@@ -20,7 +20,7 @@ DVK::DVK(long Anzahl) {
 	if (Anzahl <= 1000000) {
 		
 		anz = Anzahl;
-		anz_uns = Anzahl;
+		int anz_uns = Anzahl;
 		//int const x = Anzahl;
 
 		for (int i = 0; i<Anzahl; i++){
@@ -279,16 +279,105 @@ void DVK::HeapSort() {
 	// sortierte anz - unsoriterte
 
 
-	int AktNode; // Aktueler Knoten
-	// Schleife für runterzäglen von knoten
-	double temp_ver, d_p1, d_p2;
 	
-	anz_uns = anz;
+	
+	double temp_ver, d_p1, d_p2;
+	int node; // Aktueller Knoten
+	int anz_uns = anz;
+	int j; // zähler;
 
 
-	for (int i=anz_uns; i > 1; i--) {
-		AktNode = (int)(anz_uns / 2); // bei 7 elementen anfang bei 7/2 = 3.5 -> Knoten(index) 3
-		AktNode = AktNode - 1;
+	// Abstände init
+	double root_middle, left_middle, right_middle;
+
+	// Indizes init
+	int root, left, right;
+
+
+	while (anz_uns != 0) {
+		if (anz_uns >= 2) {
+			node = (anz_uns / 2) - 1;
+		}
+		else{
+			node = 0;
+		}
+		j = anz_uns;
+		
+
+		for (int i = node; i >= 0; i--) {
+
+			//indizes Aktualisieren
+			root = i;
+			left = (i * 2) + 1;
+			right = (i * 2) + 2;
+			//Knoten werte Aktualisieren
+			root_middle = abs(index[root]->abstand(*middle));
+			left_middle = abs(index[left]->abstand(*middle));
+			if (right != j) {
+				right_middle = abs(index[right]->abstand(*middle));
+			}
+
+
+
+			if (root_middle < left_middle) {
+				vertausche(root, left);
+
+				//Knoten werte Aktualisieren
+				root_middle = abs(index[root]->abstand(*middle));
+				left_middle = abs(index[left]->abstand(*middle));
+				if (right != j) {
+					right_middle = abs(index[right]->abstand(*middle));
+				}
+
+			}
+
+			if (right != j && anz_uns!=1) {
+				if (root_middle < right_middle)
+				{
+
+					vertausche(root, right);
+
+				}
+			}
+
+			j--;
+		}
+
+		//erstes mit letzten tauschen
+		vertausche((0), (anz_uns - 1));
+		// anz_uns decrementieren
+		anz_uns--;
+		
+	}
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	//for (int i=anz_uns; i > 1; i--) {
+	//	AktNode = (int)(anz_uns / 2); // bei 7 elementen anfang bei 7/2 = 3.5 -> Knoten(index) 3
+	//	AktNode = AktNode - 1;
+
+
+
 
 		///*root */ index[AktNode];
 		///*left */ index[AktNode * 2 ];
@@ -303,37 +392,29 @@ void DVK::HeapSort() {
 
 
 
-			//d_p1 = index[AktNode] - middle;
-			//d_p2 = index[AktNode * 2 + 1] - middle;
-			d_p1 = index[AktNode]->abstand(*middle);
-			d_p2 = index[AktNode * 2 + 1]->abstand(*middle);
+			////d_p1 = index[AktNode] - middle;
+			////d_p2 = index[AktNode * 2 + 1] - middle;
+			//d_p1 = index[AktNode]->abstand(*middle);
+			//d_p2 = index[AktNode * 2 + 1]->abstand(*middle);
 
-			temp_ver = (d_p1) - (d_p2);
+			//temp_ver = (d_p1) - (d_p2);
 
 
 			
-			if ( temp_ver > 0.0001){
+			//if ( temp_ver > 0.0001){
 				//vertausche root und left
-				vertausche(AktNode, (AktNode * 2 + 1)); // +1  = korrektur dex index
-			}
+			//	vertausche(AktNode, (AktNode * 2 + 1)); // +1  = korrektur dex index
+			//}
 
-			if ((anz_uns+1) == AktNode * 2 + 2) {
-				temp_ver = (index[AktNode] - middle) - (index[AktNode * 2 + 2] - middle);
-				if (temp_ver < 0.0001) {
-					vertausche(AktNode, (AktNode * 2 + 2)); // +2  = korrektur dex index
-				}
-			}
-
-			// wenn Anzahl unsortierte elem. = AktNode * 2 + 2
-			//temp = AktNode * 2 + 2;
-			//if (anz_uns == temp) {
-				// right > root
-			//	if ((index[AktNode] - middle) - (index[AktNode * 2 + 2] - middle) > 0, 0001) {
-					// vertausche root und right
-			//		vertausche(AktNode, (AktNode * 2 + 2));
+			//if ((anz_uns+1) == AktNode * 2 + 2) {
+			//	temp_ver = (index[AktNode] - middle) - (index[AktNode * 2 + 2] - middle);
+			//	if (temp_ver < 0.0001) {
+			//		vertausche(AktNode, (AktNode * 2 + 2)); // +2  = korrektur dex index
 			//	}
-			anz_uns--;
-		}
+			//}
+
+		//	anz_uns--;
+		//}
 
 		
 			
@@ -345,7 +426,7 @@ void DVK::HeapSort() {
 // Verwaltung für GEONote
 
 
-
+// vertauscht index First mit Index Second und behält doppelte verkettung bei
 void DVK::vertausche(long First, long Second) {
 
 	// temporäre gespeichert G1
@@ -376,6 +457,21 @@ void DVK::vertausche(long First, long Second) {
 	//Zeiger brauchen nicht ausgetauscht werden, da inhalte komplett getauscht werden
 	//################################################################################
 	cout << "" << endl;
+}
+
+// Kopiert alle Attribute (ausgenommen Zeiger) von E2 nach E1 
+void DVK::copy(GEOKO* E1, GEOKO *E2) {
+	E1->Setaus_csvB(E2->Getaus_csvB());
+	E1->Setaus_csvL(E2->Getaus_csvL());
+
+	E1->SetBrGr(E2->GetBrGr());
+	E1->SetLaGr(E2->GetLaGr());
+
+	E1->SetBrMin(E2->GetBrMin());
+	E1->SetLaMin(E2->GetLaMin());
+
+	E1->SetBrSec(E2->GetBrSec());
+	E1->SetLaSec(E2->GetLaSec());
 }
 
 //ACHTUNG !!! Gibt ALLE Elemente der Lise aus !
@@ -419,21 +515,6 @@ void DVK::create_File(string choice){
 		cout << "Datei konnte nicht geöffnet werden!" << endl;
 	}
 
-}
-
-// Kopiert alle Attribute (ausgenommen Zeiger) von E2 nach E1 (E
-void DVK::copy(GEOKO* E1, GEOKO *E2) {
-	E1->Setaus_csvB(E2->Getaus_csvB());
-	E1->Setaus_csvL(E2->Getaus_csvL());
-
-	E1->SetBrGr(E2->GetBrGr());
-	E1->SetLaGr(E2->GetLaGr());
-
-	E1->SetBrMin(E2->GetBrMin());
-	E1->SetLaMin(E2->GetLaMin());
-
-	E1->SetBrSec(E2->GetBrSec());
-	E1->SetLaSec(E2->GetLaSec());
 }
 
 

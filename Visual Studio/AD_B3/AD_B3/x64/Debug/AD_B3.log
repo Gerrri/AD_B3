@@ -1,7 +1,9 @@
 ﻿  DVK.cpp
 c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\geonode.h(27): warning C4200: Nicht dem Standard entsprechende Erweiterung: Null-Array in Struktur/Union
   c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\geonode.h(27): note: Dieser Member wird vom Standardkonstruktor oder Zuweisungsoperator für Kopieren/Verschieben ignoriert.
-c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(321): warning C4244: "=": Konvertierung von "__int64" in "double", möglicher Datenverlust
-c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(354): warning C4101: "t_V": Unreferenzierte lokale Variable
-c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(354): warning C4101: "t_N": Unreferenzierte lokale Variable
+c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(284): warning C4101: "d_p2": Unreferenzierte lokale Variable
+c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(284): warning C4101: "d_p1": Unreferenzierte lokale Variable
+c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(284): warning C4101: "temp_ver": Unreferenzierte lokale Variable
+c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(435): warning C4101: "t_V": Unreferenzierte lokale Variable
+c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(435): warning C4101: "t_N": Unreferenzierte lokale Variable
   AD_B3.vcxproj -> C:\Users\Dustin\Documents\GitHub\AD_B3\Visual Studio\AD_B3\x64\Debug\AD_B3.exe

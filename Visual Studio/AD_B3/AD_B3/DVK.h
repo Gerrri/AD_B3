@@ -34,7 +34,7 @@ private:
 	GEOKO *middle;
 
 	int anz = 0;	 // anzahl objekte im array
-	int anz_uns = 0; // anzahl der unsortieren elemente im array (von links)
+	
 
 	
 	
