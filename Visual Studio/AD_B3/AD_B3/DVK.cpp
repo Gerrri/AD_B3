@@ -456,7 +456,7 @@ void DVK::vertausche(long First, long Second) {
 	//################################################################################
 	//Zeiger brauchen nicht ausgetauscht werden, da inhalte komplett getauscht werden
 	//################################################################################
-	cout << "" << endl;
+	//cout << "" << endl;
 }
 
 // Kopiert alle Attribute (ausgenommen Zeiger) von E2 nach E1 
