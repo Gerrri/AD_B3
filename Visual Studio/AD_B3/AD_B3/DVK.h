@@ -18,6 +18,8 @@ public:
 	void MaxHeap(); // erzeug maxheap
 	void console_output_list(); // vosichtig ! gibt alle elemente aus !
 	void create_File(string choice);
+	void copy(GEOKO * E1, GEOKO * E2);
+
 
 private:
 	//Konstruktor

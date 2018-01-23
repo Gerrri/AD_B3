@@ -354,33 +354,28 @@ void DVK::vertausche(long First, long Second) {
 	DVKE *t_V, *t_N;
 
 	GEOKO *temp1 = new GEOKO;
-	temp1 = index[First];
-	t_V = index[First]->GetV();
-	t_N = index[First]->GetN();
+	GEOKO *temp2 = new GEOKO;
+	//t_V = index[First]->GetV();
+	//t_N = index[First]->GetN();
 	
 
+	// werte von First zwischenspeichern in temp1 (nur Attribute)
+	copy(temp1, index[First]);
 
-	index[First]->SetN(index[Second]->GetN());
-	index[First]->SetV(index[Second]->GetV());
+	// index[First] (Attribute) = Index[Second]
+	copy(index[First], index[Second]);
+
+	//index[Second] (Attribute) = Index[First]
+	copy(index[Second], temp1);
+
+	//index[First]->SetN(index[Second]->GetN());
+	//index[First]->SetV(index[Second]->GetV());
 
 
-
-	//Elemente komplett getauscht
-	index[First] = index[Second];
-	index[Second] = temp1;
-
-
-
-	index[Second]->SetN(temp1->GetN());
-	index[Second]->SetV(temp1->GetV());
-
-	// ehemalig First zeiger für DVK korrigiern  
-	//index[Second]->SetV(index[First]->GetV());
-	//index[Second]->SetN(index[First]->GetN());
-
-	// ehemalig Second zeiger für DVK korrigiern
-	//index[First]->SetV(temp1->GetV());
-	//index[First]->SetN(temp1->GetN());
+	//################################################################################
+	//Zeiger brauchen nicht ausgetauscht werden, da inhalte komplett getauscht werden
+	//################################################################################
+	cout << "" << endl;
 }
 
 //ACHTUNG !!! Gibt ALLE Elemente der Lise aus !
@@ -424,6 +419,21 @@ void DVK::create_File(string choice){
 		cout << "Datei konnte nicht geöffnet werden!" << endl;
 	}
 
+}
+
+// Kopiert alle Attribute (ausgenommen Zeiger) von E2 nach E1 (E
+void DVK::copy(GEOKO* E1, GEOKO *E2) {
+	E1->Setaus_csvB(E2->Getaus_csvB());
+	E1->Setaus_csvL(E2->Getaus_csvL());
+
+	E1->SetBrGr(E2->GetBrGr());
+	E1->SetLaGr(E2->GetLaGr());
+
+	E1->SetBrMin(E2->GetBrMin());
+	E1->SetLaMin(E2->GetLaMin());
+
+	E1->SetBrSec(E2->GetBrSec());
+	E1->SetLaSec(E2->GetLaSec());
 }
 
 
