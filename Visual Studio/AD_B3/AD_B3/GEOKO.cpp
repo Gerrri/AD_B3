@@ -44,8 +44,8 @@ double GEOKO::abstand(GEOKO in) {
 	sec2_L = in.aus_csvL;
 
 
-	//distance = sqrt(pow(sec1_B - sec2_B, 2) + pow(sec1_L - sec2_L, 2));
-	distance = sqrt((sec1_B - sec2_B, 2)*(sec1_B - sec2_B, 2) + (sec1_L - sec2_L, 2)*(sec1_L - sec2_L, 2));
+	distance = sqrt(pow(sec1_B - sec2_B, 2) + pow(sec1_L - sec2_L, 2));
+	//distance = sqrt((sec1_B - sec2_B, 2)*(sec1_B - sec2_B, 2) + (sec1_L - sec2_L, 2)*(sec1_L - sec2_L, 2));
 
 	return distance;
 }

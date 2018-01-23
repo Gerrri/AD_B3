@@ -182,8 +182,7 @@ void DVK::readData(string choice) {
 		B_S = nk_B_Min * 60;
 		L_S = nk_L_Min * 60;
 
-		// Berechnung Abstand zum Mittelpunkt + Zuweisung
-		index[zaehler_zeile]->Setdist(index[zaehler_zeile]->abstand(*middle));
+
 
 		//zuweisung inhalt liste
 		index[zaehler_zeile]->Setaus_csvB(B);
@@ -197,6 +196,8 @@ void DVK::readData(string choice) {
 		//zuweisung Sekunden
 		index[zaehler_zeile]->SetBrSec(B_S);
 		index[zaehler_zeile]->SetLaSec(L_S);
+
+
 
 
 
@@ -260,6 +261,16 @@ void DVK::readData(string choice) {
 
 	f.clear(); 
 	f.close();
+
+
+	// Schleife zur Berechnung der Abstände zum Mittelpunkt + Zuweisung
+	
+	for (int i = 0; i < anz; i++) {
+		double temp;
+		temp = abs(index[i]->abstand(*middle));
+
+		index[i]->Setdist(temp);
+	}
 }
 
 
@@ -289,21 +300,56 @@ void DVK::HeapSort() {
 
 
 	// Abstände init
-	double root_middle, left_middle, right_middle;
+	//double root_middle, left_middle, right_middle;
 
 	// Indizes init
-	int root, left, right;
+	//int root, left, right;
 
 
+	
+	for(int i=0; i<anz_uns; i++){
+		if (anz_uns >= 2) {
+			node = (anz_uns / 2) - 1;
+		}
+		else {
+			node = 0;
+		}
+		j = anz_uns;
+
+
+		for (int i = node; i >= 0; i--) {
+			
+			if ((index[i]->Getdist()) < (index[(i * 2) + 1]->Getdist())) {
+				vertausche(i, ((i * 2) + 1));
+			}
+
+			if ((((i * 2) + 2) != j && anz_uns != 1) && (index[i]->Getdist()) < (index[(i * 2) + 2]->Getdist())) {
+				{
+					vertausche(i, ((i * 2) + 2));
+				}
+			}
+
+			j--;
+			
+		}
+
+		//erstes mit letzten tauschen
+		vertausche((0), (anz_uns - 1));
+		// anz_uns decrementieren
+		
+		anz_uns--;
+	}
+	
+/*
 	while (anz_uns != 0) {
 		if (anz_uns >= 2) {
 			node = (anz_uns / 2) - 1;
 		}
-		else{
+		else {
 			node = 0;
 		}
 		j = anz_uns;
-		
+
 
 		for (int i = node; i >= 0; i--) {
 
@@ -312,10 +358,10 @@ void DVK::HeapSort() {
 			left = (i * 2) + 1;
 			right = (i * 2) + 2;
 			//Knoten werte Aktualisieren
-			root_middle = abs(index[root]->abstand(*middle));
-			left_middle = abs(index[left]->abstand(*middle));
+			root_middle = abs(index[root]->Getdist());
+			left_middle = abs(index[left]->Getdist());
 			if (right != j) {
-				right_middle = abs(index[right]->abstand(*middle));
+				right_middle = abs(index[right]->Getdist());
 			}
 
 
@@ -324,15 +370,15 @@ void DVK::HeapSort() {
 				vertausche(root, left);
 
 				//Knoten werte Aktualisieren
-				root_middle = abs(index[root]->abstand(*middle));
-				left_middle = abs(index[left]->abstand(*middle));
+				root_middle = abs(index[root]->Getdist());
+				left_middle = abs(index[left]->Getdist());
 				if (right != j) {
-					right_middle = abs(index[right]->abstand(*middle));
+					right_middle = abs(index[right]->Getdist());
 				}
 
 			}
 
-			if (right != j && anz_uns!=1) {
+			if (right != j && anz_uns != 1) {
 				if (root_middle < right_middle)
 				{
 
@@ -348,61 +394,13 @@ void DVK::HeapSort() {
 		vertausche((0), (anz_uns - 1));
 		// anz_uns decrementieren
 		anz_uns--;
-		
+
 	}
+*/
+
 
 	//korrektur
 	vertausche(0, 1);
-
-
-
-	//for (int i=anz_uns; i > 1; i--) {
-	//	AktNode = (int)(anz_uns / 2); // bei 7 elementen anfang bei 7/2 = 3.5 -> Knoten(index) 3
-	//	AktNode = AktNode - 1;
-
-
-
-
-		///*root */ index[AktNode];
-		///*left */ index[AktNode * 2 ];
-		///*right*/ index[AktNode * 2 + 1];
-
-			
-		
-			
-			// left > root
-			// temp Debug zwecke
-			
-
-
-
-			////d_p1 = index[AktNode] - middle;
-			////d_p2 = index[AktNode * 2 + 1] - middle;
-			//d_p1 = index[AktNode]->abstand(*middle);
-			//d_p2 = index[AktNode * 2 + 1]->abstand(*middle);
-
-			//temp_ver = (d_p1) - (d_p2);
-
-
-			
-			//if ( temp_ver > 0.0001){
-				//vertausche root und left
-			//	vertausche(AktNode, (AktNode * 2 + 1)); // +1  = korrektur dex index
-			//}
-
-			//if ((anz_uns+1) == AktNode * 2 + 2) {
-			//	temp_ver = (index[AktNode] - middle) - (index[AktNode * 2 + 2] - middle);
-			//	if (temp_ver < 0.0001) {
-			//		vertausche(AktNode, (AktNode * 2 + 2)); // +2  = korrektur dex index
-			//	}
-			//}
-
-		//	anz_uns--;
-		//}
-
-		
-			
-
 
 	}
 
