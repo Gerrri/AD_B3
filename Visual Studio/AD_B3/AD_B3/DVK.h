@@ -14,11 +14,10 @@ public:
 	//void heapDown(long Anzahl, long Knoten);
 	//void erzeugeHeap(long Anzahl);
 	void vertausche(long First, long Second);
+	void copy(GEOKO * E1, GEOKO * E2);
 	void HeapSort();// in DVK Konstruktor
-	void MaxHeap(); // erzeug maxheap
 	void console_output_list(); // vosichtig ! gibt alle elemente aus !
 	void create_File(string choice);
-	void copy(GEOKO * E1, GEOKO * E2);
 
 
 private:

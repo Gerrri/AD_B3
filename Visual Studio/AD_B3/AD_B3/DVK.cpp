@@ -350,25 +350,8 @@ void DVK::HeapSort() {
 		
 	}
 
-	
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	//korrektur
+	vertausche(0, 1);
 
 
 
@@ -427,40 +410,74 @@ void DVK::HeapSort() {
 
 
 // vertauscht index First mit Index Second und behält doppelte verkettung bei
-void DVK::vertausche(long First, long Second) {
+void DVK::vertausche(long ii, long jj) {
 
+	
+	GEOKO * i = index[ii];
+	GEOKO * j = index[jj];
+	
+	DVKE * iN = i->GetN();
+	DVKE * iV = i->GetV();
+	DVKE * jN = j->GetN();
+	DVKE * jV = j->GetV();
+
+	if (iN) iN->SetV(j);
+	if (iV) iV->SetN(j);
+	if (jN) jN->SetV(i);
+	if (jV) jV->SetN(i);
+
+	j->SetV(iV);
+	i->SetN(jN);
+
+	if ((ii + 1) == jj) {
+		i->SetV(j);
+		j->SetN(i);
+	}
+	else {
+		i->SetV(jV);
+		j->SetN(iN);
+	}
+
+	index[ii] = j;
+	index[jj] = i;
+	
+
+
+
+
+	
 	// temporäre gespeichert G1
 	//	GEOKO *temp1 = index[First];
-
+	/*
 	DVKE *t_V, *t_N;
 
 	GEOKO *temp1 = new GEOKO;
 	GEOKO *temp2 = new GEOKO;
-	//t_V = index[First]->GetV();
-	//t_N = index[First]->GetN();
-	
 
-	// werte von First zwischenspeichern in temp1 (nur Attribute)
+	// werte von First zwischenspeichern in temp1 Pointer
 	copy(temp1, index[First]);
 
-	// index[First] (Attribute) = Index[Second]
+	// index[First] POinter = Index[Second]
 	copy(index[First], index[Second]);
 
-	//index[Second] (Attribute) = Index[First]
+	//index[Second] Pointer = Index[First]
 	copy(index[Second], temp1);
+
 
 	//index[First]->SetN(index[Second]->GetN());
 	//index[First]->SetV(index[Second]->GetV());
 
-
-	//################################################################################
-	//Zeiger brauchen nicht ausgetauscht werden, da inhalte komplett getauscht werden
-	//################################################################################
-	//cout << "" << endl;
+	*/
+	
 }
 
-// Kopiert alle Attribute (ausgenommen Zeiger) von E2 nach E1 
+// Kopiert alle Attribute (ausgenommen Zeiger) von E2 nach E1 [Codeleiche]
 void DVK::copy(GEOKO* E1, GEOKO *E2) {
+
+	E1->SetN(E2->GetN());
+	E1->SetV(E2->GetV());
+	
+	/*
 	E1->Setaus_csvB(E2->Getaus_csvB());
 	E1->Setaus_csvL(E2->Getaus_csvL());
 
@@ -472,6 +489,7 @@ void DVK::copy(GEOKO* E1, GEOKO *E2) {
 
 	E1->SetBrSec(E2->GetBrSec());
 	E1->SetLaSec(E2->GetLaSec());
+	*/
 }
 
 //ACHTUNG !!! Gibt ALLE Elemente der Lise aus !
