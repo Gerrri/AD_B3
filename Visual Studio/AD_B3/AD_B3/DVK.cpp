@@ -6,6 +6,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include <string>
+#include <iomanip>
 using namespace std;
 
 
@@ -275,7 +276,6 @@ void DVK::readData(string choice) {
 	}
 }
 
-
 void DVK::HeapSort() {
 
 	//Knoten = index
@@ -292,12 +292,7 @@ void DVK::HeapSort() {
 	// Anzahl der noch zu sortierenden Objekte "anz_uns"
 	// sortierte anz - unsoriterte
 	//
-	//
-	// Abstände init
-	//double root_middle, left_middle, right_middle;
-	//
-	// Indizes init
-	//int root, left, right;
+
 
 	
 	double temp_ver, d_p1, d_p2;
@@ -327,11 +322,6 @@ void DVK::HeapSort() {
 		heapDown(anz_uns);
 
 	}
-
-
-
-
-
 
 
 	//#####################################################################################
@@ -376,6 +366,14 @@ void DVK::HeapSort() {
 		// anz_uns decrementieren
 		
 		//anz_uns--;
+
+
+		//
+		// Abstände init
+		//double root_middle, left_middle, right_middle;
+		//
+		// Indizes init
+		//int root, left, right;
 	
 	
 /*
@@ -441,8 +439,6 @@ void DVK::HeapSort() {
 	//vertausche(0, 1);
 
 	}
-	
-
 
 // Verwaltung für GEONote
 void DVK::heapDown(int anz_uns) {
@@ -519,12 +515,6 @@ void DVK::heapDown(int anz_uns) {
 		
 	}
 
-
-
-
-
-
-
 void DVK::initMaxheap() {
 	int anz_uns = anz;
 	int j = anz_uns;
@@ -553,7 +543,6 @@ void DVK::initMaxheap() {
 
 		}
 	}
-
 
 // vertauscht index First mit Index Second und behält doppelte verkettung bei
 void DVK::vertausche(long ii, long jj) {
@@ -683,5 +672,89 @@ void DVK::create_File() {
 }
 
 
+
+
+
+//################################################################################
+//MergeSort
+void DVK::MergeSort() {
+
+	//Kopie der Index-Liste erstellen
+	GEOKO **Liste = copy2(index, anz);
+
+	sortieren(Liste, this->anz);
+
+	//Schreiben der Datei mit erneuter Umrechnung der Gradangaben in Gradsekunden
+	ofstream datei;
+	datei.open(name+".cvs");
+	for (int i = 0; i < anz; i++) {
+		double br_temp = ((Liste[i]->GetBrSec() / 60 + Liste[i]->GetBrMin()) / 60 + Liste[i]->GetBrGr()) * 3600;
+		double la_temp = ((Liste[i]->GetLaSec() / 60 + Liste[i]->GetLaMin()) / 60 + Liste[i]->GetLaGr()) * 3600;
+		datei << "   " << std::fixed << std::setprecision(2) << br_temp << ",   " << std::fixed << std::setprecision(2) << la_temp << ";\n";
+	}
+	datei.close();
+
+
+}
+
+void DVK::sortieren(GEOKO *Liste[], int länge) {
+
+
+	if (länge > 1) {
+		//Teilen der Liste in zwei Hälften
+		GEOKO **Links = new GEOKO*[länge / 2];
+		GEOKO **Rechts = new GEOKO*[(länge + 1) / 2];
+
+		for (int i = 0; i < länge / 2; ++i) {
+			Links[i] = Liste[i];
+		}
+		for (int i = länge / 2; i < länge; ++i) {
+			Rechts[i - länge / 2] = Liste[i];
+		}
+
+		//Rekursiver Aufruf, um die Liste weiter in Einzelteile zu teilen
+		sortieren(Links, länge / 2);
+		sortieren(Rechts, (länge + 1) / 2);
+
+
+		GEOKO **pos1 = &Links[0];
+		GEOKO **pos2 = &Rechts[0];
+
+		//Zusammenfügen
+		//Falls pos1 näher am Mittelpunkt als pos2 liegt, wird das Element an der entsprechenden Position in die neue Liste eingefügt
+		for (int i = 0; i < länge; ++i) {
+			if ((*this->middle - **pos2) - (*this->middle - **pos1) > 0.0001) {
+				Liste[i] = *pos1;
+				if (pos1 != &Rechts[(länge + 1) / 2 - 1]) { // pos1 nicht verändern, wenn der größte Wert mehrmals vorkommt
+					if (pos1 == &Links[länge / 2 - 1]) {
+						pos1 = &Rechts[(länge + 1) / 2 - 1];
+					}
+					else {
+						++pos1;
+					}
+				}
+			}
+			//Ansonsten umgekehrt
+			else {
+				Liste[i] = *pos2;
+				if (pos2 == &Rechts[(länge + 1) / 2 - 1]) {
+					pos2 = &Links[länge / 2 - 1];
+				}
+				else {
+					++pos2;
+				}
+			}
+		}
+	}
+}
+
+GEOKO** DVK::copy2(GEOKO *Liste[], int anz) {
+	GEOKO **kopie = new GEOKO*[anz];
+
+	for (int i = 0; i < anz; i++) {
+		kopie[i] = Liste[i];
+	}
+	return kopie;
+}
 
 

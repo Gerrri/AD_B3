@@ -10,17 +10,21 @@ public:
 	//Konstruktor
 	DVK(long Anzahl) ;
 
-
-	//Nur Heapsort!
+	//MergeSort	
+	void MergeSort();
+	void sortieren(GEOKO * Liste[], int länge);
+	GEOKO ** copy2(GEOKO * Liste[], int anz);
+	
+	//Heapsort!
 	void heapDown(int anz_uns);
-	//void erzeugeHeap(long Anzahl);
 	void initMaxheap();
 	void vertausche(long First, long Second);
-	void copy(GEOKO * E1, GEOKO * E2);
-	void HeapSort();// in DVK Konstruktor
+	void HeapSort(); // in DVK Konstruktor
 	void console_output_list(); // vosichtig ! gibt alle elemente aus !
 	void create_File();
 
+	//not in use
+	void copy(GEOKO * E1, GEOKO * E2);
 
 private:
 	//Konstruktor
@@ -34,7 +38,7 @@ private:
 	GEOKO *N_Anker;
 	GEOKO *middle;
 
-	int anz = 0;	 // anzahl objekte im array
+	int anz ;	 // anzahl objekte im array
 	
 
 	
