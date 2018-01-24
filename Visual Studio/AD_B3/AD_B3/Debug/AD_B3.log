@@ -1,13 +1,10 @@
-﻿  DVK.cpp
-c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(123): error C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(439): note: Siehe Deklaration von "strtok"
-c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(126): error C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(439): note: Siehe Deklaration von "strtok"
-c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(188): error C3867: "DVKE::GetV": Keine Standardsyntax; "&" zum Erstellen eines Verweises auf das Member verwenden
-c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(188): error C2440: "=": "DVKE *(__thiscall DVKE::* )(void) const" kann nicht in "DVKE *" konvertiert werden
-  c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(188): note: Es gibt keinen Kontext, in dem diese Konvertierung möglich ist
-c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(189): error C3867: "DVKE::GetN": Keine Standardsyntax; "&" zum Erstellen eines Verweises auf das Member verwenden
-c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(189): error C2440: "=": "DVKE *(__thiscall DVKE::* )(void) const" kann nicht in "DVKE *" konvertiert werden
-  c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(189): note: Es gibt keinen Kontext, in dem diese Konvertierung möglich ist
-c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(196): error C3867: "DVKE::GetV": Keine Standardsyntax; "&" zum Erstellen eines Verweises auf das Member verwenden
-c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(197): error C3867: "DVKE::GetN": Keine Standardsyntax; "&" zum Erstellen eines Verweises auf das Member verwenden
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(395,5): warning MSB8029: Das Zwischenverzeichnis oder das Ausgabeverzeichnis darf nicht im temporären Verzeichnis enthalten sein, da dies zu Problemen mit dem inkrementellen Build führen kann.
+  DVK.cpp
+c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\geonode.h(27): warning C4200: Nicht dem Standard entsprechende Erweiterung: Null-Array in Struktur/Union
+  c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\geonode.h(27): note: Dieser Member wird vom Standardkonstruktor oder Zuweisungsoperator für Kopieren/Verschieben ignoriert.
+c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(303): warning C4101: "d_p2": Unreferenzierte lokale Variable
+c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(304): warning C4101: "node": Unreferenzierte lokale Variable
+c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(303): warning C4101: "d_p1": Unreferenzierte lokale Variable
+c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(306): warning C4101: "j": Unreferenzierte lokale Variable
+c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(303): warning C4101: "temp_ver": Unreferenzierte lokale Variable
+  AD_B3.vcxproj -> C:\Users\Dustin\AppData\Local\Temp\Temp1_AD_B3-master.zip\AD_B3-master\Visual Studio\AD_B3\AD_B3\Debug\AD_B3.exe

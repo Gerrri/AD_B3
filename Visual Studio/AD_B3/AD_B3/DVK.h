@@ -12,7 +12,7 @@ public:
 
 
 	//Nur Heapsort!
-	void heapDown();
+	void heapDown(int anz_uns);
 	//void erzeugeHeap(long Anzahl);
 	void initMaxheap();
 	void vertausche(long First, long Second);

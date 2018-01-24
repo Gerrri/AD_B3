@@ -286,14 +286,19 @@ void DVK::HeapSort() {
 	//+-----------------|------------------|
 	//| Knotenindex *2  | Kind1.index +1   |
 	//+-----------------+------------------+
-	
+	//
 	// Gegeben
 	// Anzahl der Objekte im Array "anz"
 	// Anzahl der noch zu sortierenden Objekte "anz_uns"
 	// sortierte anz - unsoriterte
+	//
+	//
+	// Abstände init
+	//double root_middle, left_middle, right_middle;
+	//
+	// Indizes init
+	//int root, left, right;
 
-
-	
 	
 	double temp_ver, d_p1, d_p2;
 	int node; // Aktueller Knoten
@@ -301,15 +306,39 @@ void DVK::HeapSort() {
 	int j; // zähler;
 
 
-	// Abstände init
-	//double root_middle, left_middle, right_middle;
 
-	// Indizes init
-	//int root, left, right;
+	//#####################################################################################
+	//--------------------------   Aktueller Code   ---------------------------------------
+	//#####################################################################################
 
-
-
+	//Maxheap aufstellen
 	initMaxheap();
+
+	for (int i = 0; i < anz; i++) {
+
+		//if (anz_uns < 1) { break; }
+
+		//vertausche erstes mit letzten Element
+		vertausche(0, anz_uns - 1);
+		//anzahl der unsortierten dekrementieren
+		anz_uns--;
+
+		//versickern des obersten elements
+		heapDown(anz_uns);
+
+	}
+
+
+
+
+
+
+
+	//#####################################################################################
+	//#####################################################################################
+
+
+	
 
 
 
@@ -343,10 +372,10 @@ void DVK::HeapSort() {
 
 
 		//erstes mit letzten tauschen
-		vertausche((0), (anz_uns - 1));
+		//vertausche((0), (anz_uns - 1));
 		// anz_uns decrementieren
 		
-		anz_uns--;
+		//anz_uns--;
 	
 	
 /*
@@ -409,13 +438,92 @@ void DVK::HeapSort() {
 
 
 	//korrektur
-	vertausche(0, 1);
+	//vertausche(0, 1);
 
 	}
 	
 
 
 // Verwaltung für GEONote
+void DVK::heapDown(int anz_uns) {
+	int node=0;
+	int j = anz;
+
+	for (int i = 0; i < anz; i++) {
+		
+		
+		/*
+		root = node;
+		left = (node * 2) + 1;
+		right = (node * 2) + 2;
+		*/
+
+		if (node*2 <= anz_uns && anz_uns >=1) {
+			
+			// if Right+Left Available
+			if (index[(node * 2) + 2] != nullptr) {
+						// if			left				   >				right               &&					left			   >	      root	         && (left.index noch zu sortieren?)
+						if ((index[(node * 2) + 1]->Getdist()) > (index[(node * 2) + 2]->Getdist()) && ((index[(node * 2) + 1]->Getdist()) > index[node]->Getdist()) && ((node * 2 + 1) < anz_uns)) {
+
+							//vertausche root mit left
+							vertausche(node, ((node * 2) + 1));
+
+							//index auf knoten left setzten
+							node = node * 2 + 1;
+						}
+
+						//else if       right					   >			root		    && (right.index noch zu sortieren?)
+						else if (((index[(node * 2) + 2]->Getdist()) >= index[node]->Getdist()) && ((node * 2 + 2) < anz_uns)) {
+							//vertausche root mit right
+							vertausche(node, ((node * 2) + 2));
+
+							//index auf knoten right setzten
+							node = node * 2 + 2;
+						}
+
+						// else right == root 
+						else {
+							//versickern Fertig
+							break;
+						}
+
+			}
+			// if Left Available
+			else if (index[(node * 2) + 1] != nullptr) {
+						// if			   	left			    >			root		  &&      (left.index noch zu sortieren?)
+						if (((index[(node * 2) + 1]->Getdist()) > index[node]->Getdist()) && ((node * 2 + 1) != anz_uns)) {
+
+							//vertausche root mit left
+							vertausche(node, ((node * 2) + 1));
+
+							//index auf knoten left setzten
+							node = node * 2 + 1;
+						}
+						else {
+							//versickern Fertig
+							break;
+						}
+
+			}
+
+		}
+		else { 
+			//versickern Fertig
+			break; 
+		}
+	}
+		
+		
+		
+		
+		
+	}
+
+
+
+
+
+
 
 void DVK::initMaxheap() {
 	int anz_uns = anz;
@@ -437,19 +545,15 @@ void DVK::initMaxheap() {
 			}
 
 			if ((((i * 2) + 2) != j && anz_uns != 1) && (index[i]->Getdist()) < (index[(i * 2) + 2]->Getdist())) {
-				{
 					vertausche(i, ((i * 2) + 2));
-				}
 			}
+			
 
 			j--;
 
 		}
 	}
 
-void DVK::heapDown() {
-
-}
 
 // vertauscht index First mit Index Second und behält doppelte verkettung bei
 void DVK::vertausche(long ii, long jj) {
