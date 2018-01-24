@@ -10,14 +10,16 @@ public:
 	//Konstruktor
 	DVK(long Anzahl) ;
 
+
 	//Nur Heapsort!
-	//void heapDown(long Anzahl, long Knoten);
+	void heapDown();
 	//void erzeugeHeap(long Anzahl);
+	void initMaxheap();
 	void vertausche(long First, long Second);
 	void copy(GEOKO * E1, GEOKO * E2);
 	void HeapSort();// in DVK Konstruktor
 	void console_output_list(); // vosichtig ! gibt alle elemente aus !
-	void create_File(string choice);
+	void create_File();
 
 
 private:

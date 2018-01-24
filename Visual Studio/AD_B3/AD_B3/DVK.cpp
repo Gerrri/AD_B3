@@ -11,7 +11,7 @@ using namespace std;
 
 // für initialisierung
 static GEOKO *index[1000000];
-string choice;
+string name;
 
 //Konstruktor DVK
 DVK::DVK(long Anzahl) {
@@ -56,8 +56,8 @@ DVK::DVK(long Anzahl) {
 
 		//Auswahl der Datei [Dateiname -> choice]
 		//Auslesen der Datei
-		choice = Menu();
-		readData(choice);
+		name = Menu();
+		readData(name);
 
 		//Ausgabe Middle
 		cout << "" << endl;
@@ -98,11 +98,13 @@ string DVK::Menu() {
 		switch (choice) {
 		case 1:cout << "Daten.csv ausgewählt" << endl;
 			cout << "Lade Datei ..." << endl;
-			return "Daten.csv";
+			name = "Daten";
+			return name+".csv";
 			break;
 		case 2:cout << "Daten1.csv ausgewählt" << endl;
 			cout << "Lade Datei ..." << endl;
-			return "Daten1.csv";
+			name = "Daten1";
+			return (name+".csv");
 			break;
 		}
 
@@ -306,7 +308,12 @@ void DVK::HeapSort() {
 	//int root, left, right;
 
 
-	
+
+	initMaxheap();
+
+
+
+	/*
 	for(int i=0; i<anz_uns; i++){
 		if (anz_uns >= 2) {
 			node = (anz_uns / 2) - 1;
@@ -332,13 +339,15 @@ void DVK::HeapSort() {
 			j--;
 			
 		}
+		*/
+
 
 		//erstes mit letzten tauschen
 		vertausche((0), (anz_uns - 1));
 		// anz_uns decrementieren
 		
 		anz_uns--;
-	}
+	
 	
 /*
 	while (anz_uns != 0) {
@@ -403,10 +412,44 @@ void DVK::HeapSort() {
 	vertausche(0, 1);
 
 	}
+	
 
 
 // Verwaltung für GEONote
 
+void DVK::initMaxheap() {
+	int anz_uns = anz;
+	int j = anz_uns;
+	int node;
+	
+	if (anz_uns >= 2) {
+		node = (anz_uns / 2) - 1;
+	}
+	else {
+		node = 0;
+	}
+
+
+		for (int i = node; i >= 0; i--) {
+
+			if ((index[i]->Getdist()) < (index[(i * 2) + 1]->Getdist())) {
+				vertausche(i, ((i * 2) + 1));
+			}
+
+			if ((((i * 2) + 2) != j && anz_uns != 1) && (index[i]->Getdist()) < (index[(i * 2) + 2]->Getdist())) {
+				{
+					vertausche(i, ((i * 2) + 2));
+				}
+			}
+
+			j--;
+
+		}
+	}
+
+void DVK::heapDown() {
+
+}
 
 // vertauscht index First mit Index Second und behält doppelte verkettung bei
 void DVK::vertausche(long ii, long jj) {
@@ -499,7 +542,8 @@ void DVK::console_output_list() {
 }
 
 //Achtung alle datensätze werden in das File geschrieben
-void DVK::create_File(string choice){
+void DVK::create_File() {
+	string choice = name + "_S.txt";
 	ofstream file;
 	file.open(choice, std::ofstream::out | std::ofstream::trunc);
 	string temp;

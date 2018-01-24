@@ -1,7 +1,18 @@
-﻿  DVK.cpp
+﻿  stdafx.cpp
+  GEOKO.cpp
+  DVKE.cpp
+  DVK.cpp
 c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\geonode.h(27): warning C4200: Nicht dem Standard entsprechende Erweiterung: Null-Array in Struktur/Union
   c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\geonode.h(27): note: Dieser Member wird vom Standardkonstruktor oder Zuweisungsoperator für Kopieren/Verschieben ignoriert.
-c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(296): warning C4101: "d_p2": Unreferenzierte lokale Variable
-c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(296): warning C4101: "d_p1": Unreferenzierte lokale Variable
-c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(296): warning C4101: "temp_ver": Unreferenzierte lokale Variable
+c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(298): warning C4101: "d_p2": Unreferenzierte lokale Variable
+c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(298): warning C4101: "d_p1": Unreferenzierte lokale Variable
+c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\dvk.cpp(298): warning C4101: "temp_ver": Unreferenzierte lokale Variable
+  main.cpp
+c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\geonode.h(27): warning C4200: Nicht dem Standard entsprechende Erweiterung: Null-Array in Struktur/Union
+  c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\geonode.h(27): note: Dieser Member wird vom Standardkonstruktor oder Zuweisungsoperator für Kopieren/Verschieben ignoriert.
+  GEONode.cpp
+c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\geonode.h(27): warning C4200: Nicht dem Standard entsprechende Erweiterung: Null-Array in Struktur/Union
+  c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\geonode.h(27): note: Dieser Member wird vom Standardkonstruktor oder Zuweisungsoperator für Kopieren/Verschieben ignoriert.
+  Code wird generiert...
+c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\geonode.cpp(73): warning C4715: "GEONode::groesser": Nicht alle Codepfade geben einen Wert zurück.
   AD_B3.vcxproj -> C:\Users\Dustin\Documents\NetBeansProjects\AD_B3\Visual Studio\AD_B3\x64\Debug\AD_B3.exe
