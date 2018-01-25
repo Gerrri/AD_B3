@@ -276,6 +276,10 @@ void DVK::readData(string choice) {
 	}
 }
 
+
+//################################
+// -------HEAPSORT Start----------
+//################################
 void DVK::HeapSort() {
 
 	//Knoten = index
@@ -440,7 +444,6 @@ void DVK::HeapSort() {
 
 	}
 
-// Verwaltung für GEONote
 void DVK::heapDown(int anz_uns) {
 	int node=0;
 	int j = anz;
@@ -605,6 +608,11 @@ void DVK::vertausche(long ii, long jj) {
 	*/
 	
 }
+//################################
+// -------HEAPSORT End  ----------
+//################################
+
+
 
 // Kopiert alle Attribute (ausgenommen Zeiger) von E2 nach E1 [Codeleiche]
 void DVK::copy(GEOKO* E1, GEOKO *E2) {

@@ -1,4 +1,1 @@
-﻿  main.cpp
-c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\geonode.h(27): warning C4200: Nicht dem Standard entsprechende Erweiterung: Null-Array in Struktur/Union
-  c:\users\dustin\documents\github\ad_b3\visual studio\ad_b3\ad_b3\geonode.h(27): note: Dieser Member wird vom Standardkonstruktor oder Zuweisungsoperator für Kopieren/Verschieben ignoriert.
-  AD_B3.vcxproj -> C:\Users\Dustin\Documents\GitHub\AD_B3\Visual Studio\AD_B3\x64\Debug\AD_B3.exe
+﻿cl : Befehlszeile error D8016: Die Befehlszeilenoptionen /O2 und /RTC1 sind inkompatibel.
