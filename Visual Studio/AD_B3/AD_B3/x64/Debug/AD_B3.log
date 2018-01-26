@@ -1,1 +1,28 @@
-﻿cl : Befehlszeile error D8016: Die Befehlszeilenoptionen /O2 und /RTC1 sind inkompatibel.
+﻿  main.cpp
+c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\dvke.h(12): warning C4458: Deklaration von "N" blendet Klassenmember aus
+  c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\dvke.h(18): note: Siehe Deklaration von "DVKE::N"
+c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\dvke.h(13): warning C4458: Deklaration von "V" blendet Klassenmember aus
+  c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\dvke.h(17): note: Siehe Deklaration von "DVKE::V"
+c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\geoko.h(27): warning C4458: Deklaration von "BrGr" blendet Klassenmember aus
+  c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\geoko.h(58): note: Siehe Deklaration von "GEOKO::BrGr"
+c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\geoko.h(28): warning C4458: Deklaration von "LaGr" blendet Klassenmember aus
+  c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\geoko.h(59): note: Siehe Deklaration von "GEOKO::LaGr"
+c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\geoko.h(29): warning C4458: Deklaration von "BrMin" blendet Klassenmember aus
+  c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\geoko.h(60): note: Siehe Deklaration von "GEOKO::BrMin"
+c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\geoko.h(30): warning C4458: Deklaration von "LaMin" blendet Klassenmember aus
+  c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\geoko.h(61): note: Siehe Deklaration von "GEOKO::LaMin"
+c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\geoko.h(31): warning C4458: Deklaration von "BrSec" blendet Klassenmember aus
+  c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\geoko.h(62): note: Siehe Deklaration von "GEOKO::BrSec"
+c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\geoko.h(32): warning C4458: Deklaration von "LaSec" blendet Klassenmember aus
+  c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\geoko.h(63): note: Siehe Deklaration von "GEOKO::LaSec"
+c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\geoko.h(33): warning C4458: Deklaration von "a_num" blendet Klassenmember aus
+  c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\geoko.h(70): note: Siehe Deklaration von "GEOKO::a_num"
+c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\geoko.h(34): warning C4458: Deklaration von "aus_csvB" blendet Klassenmember aus
+  c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\geoko.h(55): note: Siehe Deklaration von "GEOKO::aus_csvB"
+c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\geoko.h(35): warning C4458: Deklaration von "aus_csvL" blendet Klassenmember aus
+  c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\geoko.h(56): note: Siehe Deklaration von "GEOKO::aus_csvL"
+c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\geoko.h(36): warning C4458: Deklaration von "dist" blendet Klassenmember aus
+  c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\geoko.h(65): note: Siehe Deklaration von "GEOKO::dist"
+c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\geonode.h(27): warning C4200: Nicht dem Standard entsprechende Erweiterung: Null-Array in Struktur/Union
+  c:\users\dustin\documents\netbeansprojects\ad_b3\visual studio\ad_b3\ad_b3\geonode.h(27): note: Dieser Member wird vom Standardkonstruktor oder Zuweisungsoperator für Kopieren/Verschieben ignoriert.
+  AD_B3.vcxproj -> C:\Users\Dustin\Documents\NetBeansProjects\AD_B3\Visual Studio\AD_B3\x64\Debug\AD_B3.exe
